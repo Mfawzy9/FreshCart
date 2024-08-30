@@ -1,0 +1,56 @@
+/*------------ main-slider ---------------*/
+
+.main-slider .swiper-slide-active h3 {
+    animation: opToBot 1s both;
+    opacity: 0;
+}
+
+@keyframes opToBot {
+    0% {
+        transform: translateY(-30%);
+        opacity: 0
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+
+
+
+.main-slider .swiper-slide-active p span {
+    animation: opToTop 1s both;
+
+    opacity: 0;
+}
+
+@keyframes opToTop {
+    0% {
+        transform: translateY(20%);
+        opacity: 0
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+.main-slider .swiper-slide-active a {
+    animation: btnToTop 1s both;
+    opacity: 0;
+}
+
+@keyframes btnToTop {
+    0% {
+        transform: scale(1.5);
+        opacity: 0
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1
+    }
+}
