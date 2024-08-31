@@ -159,6 +159,14 @@ const authRoutes = createBrowserRouter([
         ),
       },
       {
+        path: "/login",
+        element: (
+          <PagesAnimation>
+            <Navigate to={"/"} />
+          </PagesAnimation>
+        ),
+      },
+      {
         path: "*",
         element: (
           <PagesAni2>
@@ -179,7 +187,6 @@ const unauthRoutes = createBrowserRouter([
         path: "/signup",
         element: (
           <PagesAni2>
-            {" "}
             <SignUp />
           </PagesAni2>
         ),
@@ -188,7 +195,7 @@ const unauthRoutes = createBrowserRouter([
         path: "/login",
         element: (
           <PagesAnimation>
-            <Login />{" "}
+            <Login />
           </PagesAnimation>
         ),
       },
@@ -196,7 +203,6 @@ const unauthRoutes = createBrowserRouter([
         path: "/forgotPassword",
         element: (
           <PagesAni2>
-            {" "}
             <ForgotPassword />
           </PagesAni2>
         ),
