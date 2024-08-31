@@ -77,7 +77,7 @@ export default function RelatedProducts() {
           pagination={true}
           navigation={true}
           modules={[FreeMode, Pagination, Autoplay, Navigation, Mousewheel]}
-          className="related-slider static"
+          className="related-slider details-slider static"
         >
           {relatedProducts?.map((product) => (
             <SwiperSlide key={product.id}>

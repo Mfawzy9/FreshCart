@@ -355,16 +355,16 @@ export default function ProductDetails() {
 
             <Tabs
               aria-label="Full width tabs"
-              className="my-2"
+              className="my-2 bg-white/70 dark:bg-black/70"
               variant="fullWidth"
             >
               <Tabs.Item
                 active
-                className="text-xl font-bold mb-2"
+                className="text-xl font-bold mb-2 "
                 title="Description"
                 icon={fontAwesome.FaBookOpen}
               >
-                <p className="text-slate-700 dark:text-slate-400 mb-6">
+                <p className="text-slate-800 dark:text-slate-300 p-3 leading-loose mb-6">
                   {productDetails?.description}
                 </p>
               </Tabs.Item>

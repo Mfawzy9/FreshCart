@@ -119,6 +119,7 @@ export default function Products() {
         {showPagination && (
           <div className="flex overflow-x-auto sm:justify-center mt-3">
             <Pagination
+              onClick={() => scrollTo(0, 150)}
               color="primary"
               currentPage={currentPage}
               totalPages={Math.ceil(allProducts?.length / cardsPerPage)} // count
