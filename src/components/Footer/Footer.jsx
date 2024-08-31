@@ -6,7 +6,11 @@ import logo from "../../assets/logo.png";
 export default function Footer() {
   return (
     <>
+<<<<<<< HEAD
       <div className="w-svw [box-shadow:_0_0_20px_1px_#1a56db] bg-white/70 dark:bg-black/70">
+=======
+       <div className="w-svw [box-shadow:_0_0_20px_1px_#1a56db] bg-white/70 dark:bg-black/70">
+>>>>>>> 2a2b457f1e82c2311acd18d962fdfe7299add98c
         <footer className=" container relative overflow-hidden">
           <div className="px-6 py-12 mx-auto">
             <div className="md:flex md:-mx-3 md:items-center md:justify-between">
