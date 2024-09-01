@@ -27,6 +27,7 @@ export default function Brands() {
                   Math.random() < 0.3 ? "rotate-6" : "-rotate-12";
                 return (
                   <Link
+                    onClick={() => scrollTo(0, 0)}
                     to={`/${brand?.name}/Products/${brand._id}/brand`}
                     key={brand._id}
                     className="block"

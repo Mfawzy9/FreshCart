@@ -55,6 +55,10 @@ export default function ElectronicSlider() {
               slidesPerView: 4,
               spaceBetween: 0,
             },
+            1600: {
+              slidesPerView: 5,
+              spaceBetween: 0,
+            },
           }}
           autoplay={{
             delay: 2000,

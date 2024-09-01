@@ -8,6 +8,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import useAddDeleteCart from "../../Hooks/AddDeleteCart/useAddDeleteCart";
 import soonImg from "../../assets/imgs/soon.jpg";
 import { Helmet } from "react-helmet";
+import AccessModal from "../AccessModal/AccessModal";
 
 export default function SectionProducts() {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ export default function SectionProducts() {
   const { data: allProducts, isLoading } = useAllProducts();
 
   const [sectionProducts, setSectionProducts] = useState([]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [ModalPlace, setModalPlace] = useState("");
 
   useEffect(() => {
     if (section === "category") {
@@ -29,12 +33,6 @@ export default function SectionProducts() {
       );
     }
   }, [allProducts]);
-
-  const [soonWidth, setSoonWidth] = useState(0);
-  useEffect(() => {
-    const randomWidth = Math.floor(Math.random() * 51) + 50 - 10;
-    setSoonWidth(randomWidth);
-  }, []);
 
   if (isLoading) {
     return <MainLoading />;
@@ -90,6 +88,9 @@ export default function SectionProducts() {
 
   return (
     <>
+      {openModal && (
+        <AccessModal setOpenModal={setOpenModal} place={ModalPlace} />
+      )}
       <div className="container py-24 min-h-screen">
         <Title
           title={`${
@@ -118,6 +119,8 @@ export default function SectionProducts() {
                 currentId={currentId}
                 deleteItem={deleteItem}
                 addProduct={addProduct}
+                setModalPlace={setModalPlace}
+                setOpenModal={setOpenModal}
               />
             );
           })}

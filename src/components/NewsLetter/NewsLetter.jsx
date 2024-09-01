@@ -3,7 +3,7 @@ import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 
 export default function NewsLetter() {
   return (
-    <div id="newsLetter" className="news-letter mt-20 3xl:container p-6">
+    <div id="newsLetter" className="news-letter mt-20 4xl:container p-6">
       <div className="grid lg:grid-cols-2 items-center gap-16 max-w-7xl mx-auto min-h-[350px]">
         <div>
           <h3 className="text-white text-4xl font-bold">

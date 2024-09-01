@@ -42,6 +42,7 @@ export default function Categories() {
             {categories?.slice(0, 3).map((category) => {
               return (
                 <Link
+                  onClick={() => scrollTo(0, 0)}
                   key={category._id}
                   to={`/${category?.name}/Products/${category._id}/category`}
                   className="rounded-lg relative group block overflow-hidden hover:shadow-lg hover:shadow-slate-700 transition-all duration-500"
@@ -64,6 +65,7 @@ export default function Categories() {
             {categories?.slice(3, 6).map((category, index) => {
               return (
                 <Link
+                  onClick={() => scrollTo(0, 0)}
                   to={`/${category?.name}/Products/${category._id}/category`}
                   key={category._id}
                   className="rounded-lg relative group block overflow-hidden hover:shadow-lg hover:shadow-slate-700 transition-all duration-500"
@@ -92,6 +94,7 @@ export default function Categories() {
             {categories?.slice(6, 10).map((category) => {
               return (
                 <Link
+                  onClick={() => scrollTo(0, 0)}
                   to={`/${category?.name}/Products/${category._id}/category`}
                   key={category._id}
                   className="rounded-lg relative group block overflow-hidden hover:shadow-lg hover:shadow-slate-700 transition-all duration-500"

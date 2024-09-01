@@ -9,6 +9,7 @@ import { Tabs } from "flowbite-react";
 import { GiLargeDress } from "react-icons/gi";
 import Title from "../Title/Title";
 import { motion } from "framer-motion";
+import AccessModal from "../AccessModal/AccessModal";
 
 export default function SaleProducts() {
   const { addProduct, deleteItem, currentId, loading } = useAddDeleteCart();
@@ -60,95 +61,105 @@ export default function SaleProducts() {
     );
   }, [allProducts]);
 
+  const [openModal, setOpenModal] = useState(false);
+  const [ModalPlace, setModalPlace] = useState("");
+
   if (isLoading) {
     return <MainLoading />;
   }
 
   return (
     <>
-      <>
-        <Helmet>
-          <title>On Sale Products</title>
-        </Helmet>
+      {openModal && (
+        <AccessModal setOpenModal={setOpenModal} place={ModalPlace} />
+      )}
+      <Helmet>
+        <title>On Sale Products</title>
+      </Helmet>
 
-        <div className="container py-24 min-h-screen">
-          <Title title={"Discounted Products"} mx={"mx-auto"} my={"my-4"} />
-          <Tabs
-            className="justify-center sm:gap-10"
-            aria-label="Tabs with underline"
-            variant="underline"
-          >
-            <Tabs.Item active title="Men" icon={fontAwesome.FaTshirt}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
-                  {onSaleMen?.map((product) => {
-                    return (
-                      <ProductCard
-                        product={product}
-                        key={product?.id}
-                        loading={loading}
-                        currentId={currentId}
-                        deleteItem={deleteItem}
-                        addProduct={addProduct}
-                      />
-                    );
-                  })}
-                </div>
-              </motion.div>
-            </Tabs.Item>
+      <div className="container py-24 min-h-screen">
+        <Title title={"Discounted Products"} mx={"mx-auto"} my={"my-4"} />
+        <Tabs
+          className="justify-center sm:gap-10"
+          aria-label="Tabs with underline"
+          variant="underline"
+        >
+          <Tabs.Item active title="Men" icon={fontAwesome.FaTshirt}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+                {onSaleMen?.map((product) => {
+                  return (
+                    <ProductCard
+                      product={product}
+                      key={product?.id}
+                      loading={loading}
+                      currentId={currentId}
+                      deleteItem={deleteItem}
+                      addProduct={addProduct}
+                      setModalPlace={setModalPlace}
+                      setOpenModal={setOpenModal}
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+          </Tabs.Item>
 
-            <Tabs.Item title="Woman" icon={GiLargeDress}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
-                  {onSaleWoman?.map((product) => {
-                    return (
-                      <ProductCard
-                        product={product}
-                        key={product?.id}
-                        loading={loading}
-                        currentId={currentId}
-                        deleteItem={deleteItem}
-                        addProduct={addProduct}
-                      />
-                    );
-                  })}
-                </div>
-              </motion.div>
-            </Tabs.Item>
+          <Tabs.Item title="Woman" icon={GiLargeDress}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+                {onSaleWoman?.map((product) => {
+                  return (
+                    <ProductCard
+                      product={product}
+                      key={product?.id}
+                      loading={loading}
+                      currentId={currentId}
+                      deleteItem={deleteItem}
+                      addProduct={addProduct}
+                      setModalPlace={setModalPlace}
+                      setOpenModal={setOpenModal}
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+          </Tabs.Item>
 
-            <Tabs.Item title="Electronics" icon={fontAwesome.FaLaptop}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
-                  {onSaleElectronics?.map((product) => {
-                    return (
-                      <ProductCard
-                        product={product}
-                        key={product?.id}
-                        loading={loading}
-                        currentId={currentId}
-                        deleteItem={deleteItem}
-                        addProduct={addProduct}
-                      />
-                    );
-                  })}
-                </div>
-              </motion.div>
-            </Tabs.Item>
-          </Tabs>
-        </div>
-      </>
+          <Tabs.Item title="Electronics" icon={fontAwesome.FaLaptop}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+                {onSaleElectronics?.map((product) => {
+                  return (
+                    <ProductCard
+                      product={product}
+                      key={product?.id}
+                      loading={loading}
+                      currentId={currentId}
+                      deleteItem={deleteItem}
+                      addProduct={addProduct}
+                      setModalPlace={setModalPlace}
+                      setOpenModal={setOpenModal}
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+          </Tabs.Item>
+        </Tabs>
+      </div>
     </>
   );
 }

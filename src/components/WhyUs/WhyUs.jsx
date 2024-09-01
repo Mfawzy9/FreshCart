@@ -6,7 +6,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 export default function WhyUs() {
   return (
-    <div className="my-12 px-5 bg-gradient-to-tr from-slate-400 via-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800 lg:p-10 py-6 rounded-md relative 3xl:container">
+    <div className="my-12 overflow-hidden px-5 bg-gradient-to-tr from-slate-400 via-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800 lg:p-10 py-6 rounded-md relative 3xl:container">
       <Title title={"Why us"} mx={"mx-auto"} my={"mb-10"} />
 
       <div className="grid md:grid-cols-2 items-center gap-16 md:min-h-[340px]">

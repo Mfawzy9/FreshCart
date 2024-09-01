@@ -117,7 +117,7 @@ export default function Home() {
       </div>
       {/* sale section */}
       <section className="relative group/sec my-24">
-        <div className="relative 3xl:container">
+        <div className="relative 4xl:container">
           <img
             src={saleImg}
             className="brightness-[0.4] xl:h-96 w-full group-hover/sec:brightness-90 transition-all duration-1000"
