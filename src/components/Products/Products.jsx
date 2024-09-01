@@ -7,6 +7,7 @@ import Title from "../Title/Title";
 import useAllProducts from "../../Hooks/AllProducts/useAllProducts";
 import { Pagination } from "flowbite-react";
 import { Helmet } from "react-helmet";
+import AccessModal from "../AccessModal/AccessModal";
 
 export default function Products() {
   const { data, isLoading } = useAllProducts();
@@ -51,6 +52,8 @@ export default function Products() {
       setAllProducts(filteredProducts);
     }
   }
+  const [openModal, setOpenModal] = useState(false);
+  const [ModalPlace, setModalPlace] = useState("");
 
   if (isLoading) {
     return <MainLoading />;
@@ -61,6 +64,11 @@ export default function Products() {
       <Helmet>
         <title>All Products</title>
       </Helmet>
+
+      {openModal && (
+        <AccessModal setOpenModal={setOpenModal} place={ModalPlace} />
+      )}
+
       <div className="container py-24 min-h-screen">
         <Title title={"All Products"} my={"mt-8"} mx={"mx-auto"} />
 
@@ -106,6 +114,8 @@ export default function Products() {
             ?.map((product) => {
               return (
                 <ProductCard
+                  setModalPlace={setModalPlace}
+                  setOpenModal={setOpenModal}
                   product={product}
                   key={product?.id}
                   loading={loading}

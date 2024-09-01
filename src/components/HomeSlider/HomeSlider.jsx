@@ -28,8 +28,8 @@ export default function HomeSlider() {
               src={eleSlider}
               alt="electronics"
             />
-            <div className="absolute top-1/2 -translate-y-1/2 xl:-translate-y-3/4 4xl:-translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col gap-0 sm:gap-2 text-center items-center justify-center">
-              <p className="text-[4vw] lg:text-5xl M-font  p-1">
+            <div className="absolute top-1/2 -translate-y-1/2 xl:-translate-y-3/4 4xl:-translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col gap-0 sm:gap-4 text-center items-center justify-center">
+              <p className="text-[4vw] lg:text-5xl M-font sm:space-y-3 p-1">
                 <span
                   className="inline-block bg-black/50 p-1 sm:p-3 rounded"
                   style={{ animationDelay: "0.5s" }}
@@ -68,7 +68,7 @@ export default function HomeSlider() {
               src={manSlider}
               alt="men Fashion"
             />
-            <div className="w-3/4 absolute top-1/2 -translate-y-1/2 xl:-translate-y-3/4 4xl:-translate-y-1/2 -translate-x-1/2 left-1/2 flex flex-col gap-1 text-center md:text-start items-start justify-center">
+            <div className="w-3/4 absolute top-1/2 -translate-y-1/2 4xl:-translate-y-1/2 -translate-x-1/2 left-1/2 flex flex-col gap-1 text-center md:text-start items-start justify-center">
               <h3
                 style={{ animationDelay: "0.5s" }}
                 className="text-[5vw] lg:text-5xl font-extrabold italic w-full lg:w-3/4 text-blue-600 sub-font"
@@ -120,19 +120,19 @@ export default function HomeSlider() {
             <div className="w-3/4 absolute top-1/2 -translate-y-1/2 xl:-translate-y-3/4 4xl:-translate-y-1/2 translate-x-1/2 right-1/2 sm:pe-10 sm:right-1/3 flex flex-col gap-1 text-center items-center justify-center">
               <h3
                 style={{ animationDelay: "0.5s" }}
-                className="bg-black/50 sm:bg-transparent text-[5vw] lg:text-5xl font-extrabold italic w-full lg:w-3/4 text-blue-600 sub-font"
+                className="bg-black/50 sm:bg-transparent text-[5vw] w-fit lg:text-5xl font-extrabold italic lg:w-3/4 text-blue-600 sub-font"
               >
                 Summer Collection
               </h3>
-              <p className="lg:space-y-5 bg-black/50 sm:bg-transparent text-[4vw] lg:text-5xl lg:w-3/4 M-font whitespace-break-spaces leading-relaxed tracking-wider sm:p-3">
+              <p className="lg:space-y-5  text-[4vw] lg:text-5xl lg:w-3/4 M-font whitespace-break-spaces leading-relaxed tracking-wider sm:p-3">
                 <span
-                  className="inline-block leading-snug"
+                  className="inline-block leading-snug bg-black/50 sm:bg-transparent p-1"
                   style={{ animationDelay: "0.7s" }}
                 >
                   sustainable fashion wear
                 </span>
                 <span
-                  className="inline-block"
+                  className="inline-block bg-black/50 sm:bg-transparent p-1"
                   style={{ animationDelay: "0.9s" }}
                 >
                   with Special Offers

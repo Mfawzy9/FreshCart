@@ -1,9 +1,5 @@
 import { useContext } from "react";
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Layout from "./components/Layout/Layout";
 import Categories from "./components/Categories/Categories";
@@ -38,10 +34,13 @@ import { Offline } from "react-detect-offline";
 import { BiNoSignal } from "react-icons/bi";
 import PagesAnimation from "./components/PagesAnimation/PagesAnimation";
 import PagesAni2 from "./components/PagesAni2/PagesAni2";
+import AuthProtector from "./components/AuthProtector/AuthProtector";
+import AccessProtector from "./components/AccessProtector/AccessProtector";
+import LoginFirst from "./components/NoAccess/NoAccess";
 
 const query = new QueryClient({});
 
-const authRoutes = createBrowserRouter([
+const unauthRoutes = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
@@ -63,34 +62,10 @@ const authRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/wishlist",
-        element: (
-          <PagesAni2>
-            <WishList />
-          </PagesAni2>
-        ),
-      },
-      {
         path: "/products",
         element: (
           <PagesAnimation>
             <Products />
-          </PagesAnimation>
-        ),
-      },
-      {
-        path: "/cart",
-        element: (
-          <PagesAni2>
-            <Cart />{" "}
-          </PagesAni2>
-        ),
-      },
-      {
-        path: "/userSettings",
-        element: (
-          <PagesAnimation>
-            <UserSettings />
           </PagesAnimation>
         ),
       },
@@ -106,15 +81,95 @@ const authRoutes = createBrowserRouter([
         path: "/saleProducts",
         element: (
           <PagesAni2>
-            <SaleProducts />{" "}
+            <SaleProducts />
           </PagesAni2>
         ),
       },
       {
+        path: "/brands",
+        element: (
+          <PagesAnimation>
+            <Brands />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/productDetails/:id/:category",
+        element: (
+          <PagesAnimation>
+            <ProductDetails />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/signup",
+        element: (
+          <AuthProtector>
+            <PagesAni2>
+              <SignUp />
+            </PagesAni2>
+          </AuthProtector>
+        ),
+      },
+      {
+        path: "/login",
+        element: (
+          <AuthProtector>
+            <PagesAni2>
+              <Login />
+            </PagesAni2>
+          </AuthProtector>
+        ),
+      },
+      {
+        path: "/forgotPassword",
+        element: (
+          <AuthProtector>
+            <PagesAni2>
+              <ForgotPassword />
+            </PagesAni2>
+          </AuthProtector>
+        ),
+      },
+      {
+        path: "/wishlist",
+        element: (
+          <PagesAni2>
+            <AccessProtector>
+              <WishList />
+            </AccessProtector>
+          </PagesAni2>
+        ),
+      },
+
+      {
+        path: "/cart",
+        element: (
+          <PagesAni2>
+            <AccessProtector>
+              <Cart />
+            </AccessProtector>
+          </PagesAni2>
+        ),
+      },
+      {
+        path: "/userSettings",
+        element: (
+          <PagesAnimation>
+            <AccessProtector>
+              <UserSettings />
+            </AccessProtector>
+          </PagesAnimation>
+        ),
+      },
+
+      {
         path: "/addAddress",
         element: (
           <PagesAni2>
-            <AddAddress />{" "}
+            <AccessProtector>
+              <AddAddress />
+            </AccessProtector>
           </PagesAni2>
         ),
       },
@@ -122,7 +177,153 @@ const authRoutes = createBrowserRouter([
         path: "/checkout/:cartId",
         element: (
           <PagesAni2>
-            <CheckOut />{" "}
+            <AccessProtector>
+              <CheckOut />
+            </AccessProtector>
+          </PagesAni2>
+        ),
+      },
+      {
+        path: "/allorders",
+        element: (
+          <PagesAni2>
+            <AccessProtector>
+              <Orders />
+            </AccessProtector>
+          </PagesAni2>
+        ),
+      },
+      {
+        path: "/order/:orderId",
+        element: (
+          <PagesAnimation>
+            <AccessProtector>
+              <Order />
+            </AccessProtector>
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/noAccess",
+        element: (
+          <PagesAni2>
+            <LoginFirst />
+          </PagesAni2>
+        ),
+      },
+      {
+        path: "*",
+        element: (
+          <PagesAni2>
+            <NotFound />
+          </PagesAni2>
+        ),
+      },
+    ],
+  },
+]);
+
+const authRoutes = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        index: true,
+        element: (
+          <PagesAnimation>
+            <Home />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/categories",
+        element: (
+          <PagesAnimation>
+            <Categories />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/products",
+        element: (
+          <PagesAnimation>
+            <Products />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: `/:name/Products/:sectionId/:section`,
+        element: (
+          <PagesAnimation>
+            <SectionProducts />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/saleProducts",
+        element: (
+          <PagesAni2>
+            <SaleProducts />
+          </PagesAni2>
+        ),
+      },
+      {
+        path: "/brands",
+        element: (
+          <PagesAnimation>
+            <Brands />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/productDetails/:id/:category",
+        element: (
+          <PagesAnimation>
+            <ProductDetails />
+          </PagesAnimation>
+        ),
+      },
+      {
+        path: "/wishlist",
+        element: (
+          <PagesAni2>
+            <WishList />
+          </PagesAni2>
+        ),
+      },
+
+      {
+        path: "/cart",
+        element: (
+          <PagesAni2>
+            <Cart />
+          </PagesAni2>
+        ),
+      },
+      {
+        path: "/userSettings",
+        element: (
+          <PagesAnimation>
+            <UserSettings />
+          </PagesAnimation>
+        ),
+      },
+
+      {
+        path: "/addAddress",
+        element: (
+          <PagesAni2>
+            <AddAddress />
+          </PagesAni2>
+        ),
+      },
+      {
+        path: "/checkout/:cartId",
+        element: (
+          <PagesAni2>
+            <CheckOut />
           </PagesAni2>
         ),
       },
@@ -138,77 +339,48 @@ const authRoutes = createBrowserRouter([
         path: "/order/:orderId",
         element: (
           <PagesAnimation>
-            <Order />{" "}
+            <Order />
           </PagesAnimation>
         ),
       },
       {
-        path: "/brands",
+        path: "/signup",
         element: (
-          <PagesAnimation>
-            <Brands />{" "}
-          </PagesAnimation>
-        ),
-      },
-      {
-        path: "/productDetails/:id/:category",
-        element: (
-          <PagesAnimation>
-            <ProductDetails />{" "}
-          </PagesAnimation>
+          <AuthProtector>
+            <PagesAni2>
+              <SignUp />
+            </PagesAni2>
+          </AuthProtector>
         ),
       },
       {
         path: "/login",
         element: (
-          <PagesAnimation>
-            <Navigate to={"/"} />
-          </PagesAnimation>
+          <AuthProtector>
+            <PagesAni2>
+              <Login />
+            </PagesAni2>
+          </AuthProtector>
+        ),
+      },
+      {
+        path: "/forgotPassword",
+        element: (
+          <AuthProtector>
+            <PagesAni2>
+              <ForgotPassword />
+            </PagesAni2>
+          </AuthProtector>
         ),
       },
       {
         path: "*",
         element: (
           <PagesAni2>
-            <NotFound />{" "}
+            <NotFound />
           </PagesAni2>
         ),
       },
-    ],
-  },
-]);
-
-const unauthRoutes = createBrowserRouter([
-  {
-    path: "",
-    element: <Layout />,
-    children: [
-      {
-        path: "/signup",
-        element: (
-          <PagesAni2>
-            <SignUp />
-          </PagesAni2>
-        ),
-      },
-      {
-        path: "/login",
-        element: (
-          <PagesAni2>
-            <Login />
-          </PagesAni2>
-        ),
-      },
-      {
-        path: "/forgotPassword",
-        element: (
-          <PagesAni2>
-            <ForgotPassword />
-          </PagesAni2>
-        ),
-      },
-      { path: "*", element: <Navigate to={"/login"} /> },
-      { path: "", element: <Navigate to={"/login"} /> },
     ],
   },
 ]);
@@ -218,6 +390,7 @@ function RouteHandler() {
   if (userLogin === undefined) {
     return <></>;
   }
+
   return <RouterProvider router={userLogin ? authRoutes : unauthRoutes} />;
 }
 

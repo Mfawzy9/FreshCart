@@ -3,11 +3,19 @@ import "./AddToWishListCheckBox.css";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import { WishListContext } from "../../Context/WishListContext/WishListContext";
 import { CartContext } from "../../Context/CartContext/CartContext";
+import { UserContext } from "../../Context/UserContext/UserContext";
+import { useNavigate } from "react-router-dom";
 
-export default function AddToWishListCheckBox({ product }) {
+export default function AddToWishListCheckBox({
+  product,
+  setModalPlace,
+  setOpenModal,
+}) {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { addProductToWishList, deleteProductFromWishList, wishListIds } =
     useContext(WishListContext);
+  const { userLogin } = useContext(UserContext);
 
   const {
     cart,
@@ -36,17 +44,22 @@ export default function AddToWishListCheckBox({ product }) {
         <input
           disabled={loading}
           onChange={(e) => {
-            !e.target.checked
-              ? deleteFromWl(product?.id)
-              : cart?.data?.products?.some(
-                  (_productObj) => _productObj.product?.id === product?.id
-                )
-              ? (addToWl(product?.id), deleteCartItem(product?.id))
-              : addToWl(product?.id);
+            if (userLogin) {
+              !e.target.checked
+                ? deleteFromWl(product?.id)
+                : cart?.data?.products?.some(
+                    (_productObj) => _productObj.product?.id === product?.id
+                  )
+                ? (addToWl(product?.id), deleteCartItem(product?.id))
+                : addToWl(product?.id);
+            } else {
+              setOpenModal(true);
+              setModalPlace("Wish List");
+            }
           }}
           type="checkbox"
           className="checkbox disabled:cursor-not-allowed"
-          checked={wishListIds?.includes(product?.id)}
+          checked={userLogin ? wishListIds?.includes(product?.id) : false}
         />
         <div className="svg-container">
           {loading ? (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import Logo from "../../assets/logo.png";
 import { Dropdown, Navbar, Tooltip } from "flowbite-react";
@@ -34,10 +34,12 @@ export default function NavBar() {
 
   function logOut() {
     localStorage.removeItem("userToken");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
     setUserLogin(null);
     setUserName(null);
     setUserEmail(null);
-    navigate("/login");
+    navigate("/");
   }
 
   return (
@@ -54,65 +56,73 @@ export default function NavBar() {
         </Link>
 
         <div className="flex md:order-2 items-center">
-          {userLogin != null && (
-            <Dropdown
-              arrowIcon={false}
-              inline
-              className="rounded-lg"
-              label={
-                <>
-                  <fontAwesome.FaUserCircle className="text-4xl rounded ms-1" />
-                </>
-              }
-            >
-              <Dropdown.Header className="flex flex-col gap-2">
-                <span className="text-sm flex items-center gap-2 font-medium ">
-                  <fontAwesome.FaUser /> {userName}
-                </span>
-                <span className="truncate text-sm flex items-center gap-2">
-                  <fontAwesome.FaEnvelope /> {userEmail}
-                </span>
-              </Dropdown.Header>
-              <div className="flex flex-col px-3">
+          <Dropdown
+            arrowIcon={false}
+            inline
+            className="rounded-lg"
+            label={
+              <>
+                <fontAwesome.FaUserCircle className="text-4xl rounded ms-1" />
+              </>
+            }
+          >
+            {userLogin != null && (
+              <>
+                <Dropdown.Header className="flex flex-col gap-2">
+                  <span className="text-sm flex items-center gap-2 font-medium ">
+                    <fontAwesome.FaUser /> {userName}
+                  </span>
+                  <span className="truncate text-sm flex items-center gap-2">
+                    <fontAwesome.FaEnvelope /> {userEmail}
+                  </span>
+                </Dropdown.Header>
+                <div className="flex flex-col px-3">
+                  <Link
+                    onClick={() => scrollTo(0, 0)}
+                    className="acc-link flex items-center gap-2 p-2 hover:text-white transition-all duration-300"
+                    to="/userSettings"
+                  >
+                    <fontAwesome.FaUserCog className="text-xl" />
+                    My Account
+                  </Link>
+                </div>
+                <Dropdown.Divider />
+                <div className="flex flex-col px-3">
+                  <span
+                    className="cursor-pointer acc-link p-2 hover:text-white transition-all duration-300 flex items-center gap-1 hover:bg-red-800 hover:[box-shadow:0_0_10px_#9b1c1c]"
+                    onClick={logOut}
+                  >
+                    <VscSignOut className="text-xl" />
+                    Log Out
+                  </span>
+                </div>
+              </>
+            )}
+            {userLogin == null && (
+              <div className="flex flex-col gap-1 py-1">
                 <Link
                   onClick={() => scrollTo(0, 0)}
-                  className="acc-link flex items-center gap-2 p-2 hover:text-white transition-all duration-300"
-                  to="/userSettings"
+                  to={"/login"}
+                  className="flex flex-col px-3"
                 >
-                  <fontAwesome.FaUserCog className="text-xl" />
-                  My Account
+                  <span className="cursor-pointer acc-link px-4 py-2 hover:text-white transition-all duration-300 flex items-center gap-1">
+                    <VscSignIn className="text-xl" />
+                    Login
+                  </span>
+                </Link>
+                <Link
+                  onClick={() => scrollTo(0, 0)}
+                  to={"/signup"}
+                  className="flex flex-col px-3"
+                >
+                  <span className="cursor-pointer acc-link px-4 py-2 hover:text-white transition-all duration-300 flex items-center gap-1 hover:bg-green-700 hover:[box-shadow:0_0_10px_#046c4e]">
+                    <fontAwesome.FaUserPlus className="[font-size:18px]" />
+                    Signup
+                  </span>
                 </Link>
               </div>
-              <Dropdown.Divider />
-              <div className="flex flex-col px-3">
-                <span
-                  className="cursor-pointer acc-link p-2 hover:text-white transition-all duration-300 flex items-center gap-1 hover:bg-red-800 hover:[box-shadow:0_0_10px_#9b1c1c]"
-                  onClick={logOut}
-                >
-                  <VscSignOut className="text-xl" />
-                  Log Out
-                </span>
-              </div>
-            </Dropdown>
-          )}
-
-          {userLogin == null && (
-            <div className="flex gap-2 mr-2">
-              <Link
-                to="/signup"
-                className="px-4 py-[8px!important] text-white bg-blue-700 rounded hover:bg-blue-800 transition-all duration-300 flex items-center gap-1"
-              >
-                <fontAwesome.FaUserPlus className="[font-size:18px]" /> Signup{" "}
-              </Link>
-              <Link
-                to="/login"
-                className="px-4 py-[8px!important] text-white bg-green-700 rounded hover:bg-green-800 transition-all duration-300 flex items-center gap-1"
-              >
-                <VscSignIn className="text-xl" />
-                Login
-              </Link>
-            </div>
-          )}
+            )}
+          </Dropdown>
 
           <DarkModeSwitch
             style={{ marginBottom: "" }}
@@ -123,43 +133,43 @@ export default function NavBar() {
             sunColor="white"
             className="mx-2"
           />
-          {userLogin != null && <Navbar.Toggle className="nav-toggler" />}
+          <Navbar.Toggle className="nav-toggler" />
         </div>
 
-        {userLogin != null && (
-          <>
-            <Navbar.Collapse className="mr-auto text-center md:text-start navs ">
-              <NavLink
-                onClick={() => window.scrollTo(0, 0)}
-                to="/"
-                className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[7px!important] hover:text-white"
-              >
-                Home
-              </NavLink>
-              <NavLink
-                onClick={() => window.scrollTo(0, 0)}
-                to="/categories"
-                className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
-              >
-                Categories
-              </NavLink>
-              <NavLink
-                onClick={() => window.scrollTo(0, 0)}
-                to="/products"
-                className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
-              >
-                Products
-              </NavLink>
-              <NavLink
-                onClick={() => window.scrollTo(0, 0)}
-                to="/brands"
-                className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
-              >
-                Brands
-              </NavLink>
-            </Navbar.Collapse>
+        <>
+          <Navbar.Collapse className="mr-auto text-center md:text-start navs ">
+            <NavLink
+              onClick={() => window.scrollTo(0, 0)}
+              to="/"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[7px!important] hover:text-white"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo(0, 0)}
+              to="/categories"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
+            >
+              Categories
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo(0, 0)}
+              to="/products"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
+            >
+              Products
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo(0, 0)}
+              to="/brands"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
+            >
+              Brands
+            </NavLink>
+          </Navbar.Collapse>
 
-            <Navbar.Collapse className="ml-auto mr-1 text-center md:text-start navs ">
+          <Navbar.Collapse className="ml-auto mr-1 text-center md:text-start navs ">
+            {userLogin != null && (
               <div className="icons flex justify-center self-center gap-4 md:gap-2 ">
                 <Tooltip content="Orders" placement="bottom">
                   <NavLink
@@ -204,9 +214,9 @@ export default function NavBar() {
                   </NavLink>
                 </Tooltip>
               </div>
-            </Navbar.Collapse>
-          </>
-        )}
+            )}
+          </Navbar.Collapse>
+        </>
       </Navbar>
     </>
   );

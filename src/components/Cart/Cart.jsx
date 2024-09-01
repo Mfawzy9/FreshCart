@@ -57,9 +57,6 @@ export default function Cart() {
 
   return (
     <>
-      <Helmet>
-        <title>Cart</title>
-      </Helmet>
       <div className="container py-24 min-h-screen">
         <div className="font-[sans-serif]  h-full pt-5">
           <div className="max-w-7xl max-lg:max-w-3xl mx-auto ">

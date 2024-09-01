@@ -10,8 +10,6 @@ import {
   Navigation,
   Autoplay,
   Zoom,
-  FreeMode,
-  Mousewheel,
 } from "swiper/modules";
 import { useQuery } from "@tanstack/react-query";
 import RatingStars from "../RatingStars/RatingStars";
@@ -22,20 +20,20 @@ import QuantityInput from "../CartItem/QuantityInput";
 import AddToWishListCheckBox from "../AddToWishListCheckBox/AddToWishListCheckBox";
 import { WishListContext } from "../../Context/WishListContext/WishListContext";
 import { Tabs } from "flowbite-react";
-import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
-import { MdDashboard } from "react-icons/md";
 import SaleBadge from "../SaleBadge/SaleBadge";
 import { Helmet } from "react-helmet";
+import { UserContext } from "../../Context/UserContext/UserContext";
+import AccessModal from "../AccessModal/AccessModal";
 
 export default function ProductDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { addProductToCart, setProductsCount, cart, deleteCartItem } =
-    useContext(CartContext);
+  const { addProductToCart, cart, deleteCartItem } = useContext(CartContext);
   const { deleteProductFromWishList, wishListIds } =
     useContext(WishListContext);
+  const { userLogin } = useContext(UserContext);
 
   const [loading, setLoading] = useState(false);
   const [currentId, setCurrentId] = useState(0);
@@ -55,61 +53,19 @@ export default function ProductDetails() {
     setLoading(false);
   }
 
-  const { id, category } = useParams();
+  const { id } = useParams();
 
   const [bigSlider, setBigSlider] = useState(false);
-  const [currentImg, setCurrentImg] = useState("");
 
   //product details
-  const {
-    data: productDetails,
-    status,
-    isError,
-    error,
-    isLoading,
-    isFetching,
-  } = useQuery({
+  const { data: productDetails, isLoading } = useQuery({
     queryKey: ["productDetails", id],
     queryFn: async () =>
       await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`),
     select: (data) => data.data.data,
-    // keepPreviousData: true,
+
     staleTime: 1000 * 60 * 60, // 1 hour
   });
-
-  if (isLoading) {
-    return <MainLoading />;
-  }
-
-  // Product details
-  // async function getProductDetails(id){
-  //   try {
-  //   const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
-  //     setProductDetails(data.data)
-  //   } catch (error) {
-
-  //   }
-  // }
-
-  // RelatedProduct
-  // async function getRelatedProduct(category){
-  //   try {
-  //   const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products`)
-  //     const allProducts = data.data
-  //     const relatedProducts = allProducts.filter(product => product.category.name === category)
-  //     setRelatedProducts(relatedProducts)
-
-  //   } catch (error) {
-
-  //   }
-
-  // }
-
-  // useEffect(()=>{
-  //   getProductDetails(id)
-  //   getRelatedProduct(category)
-  //   window.scrollTo(0,0)
-  // } , [id])
 
   function closeBigSlider(event) {
     if (event.target.classList.contains("big-slider")) {
@@ -117,6 +73,12 @@ export default function ProductDetails() {
     } else {
       setBigSlider(true);
     }
+  }
+  const [openModal, setOpenModal] = useState(false);
+  const [ModalPlace, setModalPlace] = useState("");
+
+  if (isLoading) {
+    return <MainLoading />;
   }
 
   return (
@@ -200,7 +162,11 @@ export default function ProductDetails() {
                       />
                     </SwiperSlide>
                   )}
-                  <AddToWishListCheckBox product={productDetails} />
+                  <AddToWishListCheckBox
+                    product={productDetails}
+                    setModalPlace={setModalPlace}
+                    setOpenModal={setOpenModal}
+                  />
                   <SaleBadge top={"-top-3"} product={productDetails} />
                 </Swiper>
               </div>
@@ -299,52 +265,87 @@ export default function ProductDetails() {
                   )}
                 </div>
                 <div className="flex justify-between lg:my-auto my-2">
-                  {cart?.data?.products.some(
-                    (_productObj) =>
-                      _productObj.product?.id === productDetails?.id
-                  ) ? (
-                    <div className="flex flex-wrap mt-1 items-center gap-2 px-1">
-                      <QuantityInput productId={productDetails?.id} />
-                      <div className="btns flex justify-between items-center">
-                        <button
-                          disabled={currentId === productDetails?.id && loading}
-                          onClick={() => deleteItem(productDetails?.id)}
-                          className="disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-red-700 focus:ring-4 focus:ring-red-300 inline-flex items-center rounded-lg text-white justify-center"
-                        >
-                          {currentId === productDetails?.id && loading ? (
-                            <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
-                          ) : (
-                            <span className=" flex items-center">
-                              <bootstrapIcons.BsFillCartDashFill className="me-2 text-xl" />
-                              Remove from cart
-                            </span>
-                          )}
-                          <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
-                        </button>
-                      </div>
-                    </div>
+                  {userLogin ? (
+                    <>
+                      {cart?.data?.products.some(
+                        (_productObj) =>
+                          _productObj.product?.id === productDetails?.id
+                      ) ? (
+                        <div className="flex flex-wrap mt-1 items-center gap-2 px-1">
+                          <QuantityInput productId={productDetails?.id} />
+                          <div className="btns flex justify-between items-center">
+                            <button
+                              disabled={
+                                currentId === productDetails?.id && loading
+                              }
+                              onClick={() => deleteItem(productDetails?.id)}
+                              className="disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-red-700 focus:ring-4 focus:ring-red-300 inline-flex items-center rounded-lg text-white justify-center"
+                            >
+                              {currentId === productDetails?.id && loading ? (
+                                <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
+                              ) : (
+                                <span className=" flex items-center">
+                                  <bootstrapIcons.BsFillCartDashFill className="me-2 text-xl" />
+                                  Remove from cart
+                                </span>
+                              )}
+                              <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="btns flex mt-1 justify-between w-full items-center">
+                          <button
+                            type="button"
+                            disabled={
+                              currentId === productDetails?.id && loading
+                            }
+                            onClick={() =>
+                              addProduct(productDetails?.id).then(() => {
+                                wishListIds.some((p) => p === productDetails.id)
+                                  ? deleteProductFromWishList(
+                                      productDetails?.id
+                                    )
+                                  : null;
+                              })
+                            }
+                            className="disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-blue-300 inline-flex items-center rounded-lg text-white justify-center"
+                          >
+                            {currentId === productDetails?.id && loading ? (
+                              <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
+                            ) : (
+                              <span className=" flex items-center">
+                                <fontAwesome.FaCartPlus className="mr-2 text-xl" />
+                                Add to cart
+                              </span>
+                            )}
+                            <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+                          </button>
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <div className="btns flex mt-1 justify-between w-full items-center">
+                      {openModal && (
+                        <AccessModal
+                          setOpenModal={setOpenModal}
+                          place={ModalPlace}
+                        />
+                      )}
                       <button
                         type="button"
                         disabled={currentId === productDetails?.id && loading}
-                        onClick={() =>
-                          addProduct(productDetails?.id).then(() => {
-                            wishListIds.some((p) => productDetails.id)
-                              ? deleteProductFromWishList(productDetails?.id)
-                              : null;
-                          })
-                        }
-                        className="disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-blue-300 inline-flex items-center rounded-lg text-white justify-center"
+                        onClick={() => {
+                          setOpenModal(true);
+                          setModalPlace("Cart");
+                        }}
+                        className="w-full p-2 group relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-blue-300 inline-flex items-center rounded-lg text-white justify-center"
                       >
-                        {currentId === productDetails?.id && loading ? (
-                          <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
-                        ) : (
-                          <span className=" flex items-center">
-                            <fontAwesome.FaCartPlus className="mr-2 text-xl" />
-                            Add to cart
-                          </span>
-                        )}
+                        <span className=" flex items-center">
+                          <fontAwesome.FaCartPlus className="mr-2 text-xl" />
+                          Add to cart
+                        </span>
+
                         <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
                       </button>
                     </div>
@@ -414,7 +415,10 @@ export default function ProductDetails() {
               </Tabs.Item>
             </Tabs>
           </section>
-          <RelatedProducts />
+          <RelatedProducts
+            setModalPlace={setModalPlace}
+            setOpenModal={setOpenModal}
+          />
         </div>
       </>
     </>

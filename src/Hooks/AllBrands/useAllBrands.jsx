@@ -9,7 +9,6 @@ export default function useAllBrands() {
       );
       return data;
     } catch (error) {
-      console.error(error);
       return error;
     }
   }

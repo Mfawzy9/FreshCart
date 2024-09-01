@@ -81,7 +81,7 @@ export default function Login() {
       </Helmet>
       <>
         <section className="dark:bg-zinc-900 bg-zinc-50">
-          <div className="container">
+          <div className="container pt-20">
             <form
               className="max-w-lg m-auto  min-h-screen flex flex-col pt-32 gap-3 dark:text-white relative"
               onSubmit={formik.handleSubmit}
@@ -121,7 +121,7 @@ export default function Login() {
                   onChange={formik.handleChange}
                   type="email"
                   icon={fontAwesome.FaEnvelope}
-                  placeholder="Email"
+                  placeholder="Enter Email"
                 />
                 {formik.errors.email && formik.touched.email ? (
                   <>

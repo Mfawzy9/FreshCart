@@ -1,13 +1,11 @@
 import React from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
-
 import saleImg from "../../assets/imgs/discountBg.jpg";
 import MainLoading from "../MainLoading/MainLoading";
 import useAllProducts from "../../Hooks/AllProducts/useAllProducts";
 import Title from "../Title/Title";
 import { Helmet } from "react-helmet";
-
 import { motion } from "framer-motion";
 import HomeSlider from "../HomeSlider/HomeSlider";
 import ElectronicSlider from "../ElectronicSlider/ElectronicSlider";

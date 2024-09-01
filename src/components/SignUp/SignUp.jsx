@@ -124,7 +124,7 @@ export default function SignUp() {
       </Helmet>
       <>
         <section className="min-h-screen dark:bg-zinc-900 bg-zinc-50">
-          <div className="container">
+          <div className="container pt-12">
             <div className="container pt-16 h-full">
               <form
                 className="max-w-lg mx-auto p-4 flex flex-col gap-3"

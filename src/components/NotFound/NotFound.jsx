@@ -9,7 +9,7 @@ export default function NotFound() {
   const { userLogin } = useContext(UserContext);
 
   return (
-    <div className="container py-24 min-h-screen">
+    <div className="container min-h-screen py-24 flex items-center">
       <Helmet>
         <title>404 Not Found</title>
       </Helmet>

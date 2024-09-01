@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./ForgotPassword.css";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
-
 import { TfiReload } from "react-icons/tfi";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 import { HStack, PinInput, PinInputField } from "@chakra-ui/react";
 import { Bounce, toast } from "react-toastify";
 import { Tooltip } from "flowbite-react";
@@ -173,7 +171,7 @@ export default function ForgotPassword() {
         <title>Forgot Password</title>
       </Helmet>
       <>
-        <section className="forget-section">
+        <section className="forget-section pt-20">
           <div className="container">
             <div className="flex flex-col items-center justify-center pb-24 mx-auto h-screen relative">
               <div className="back absolute top-6 right-6 flex justify-center">
@@ -200,12 +198,12 @@ export default function ForgotPassword() {
                       mass: 0.5,
                       damping: 10,
                     }}
-                    className="w-full p-4 absolute bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8"
+                    className="w-full p-4 absolute bg-slate-300 rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8"
                   >
-                    <h1 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    <h1 className="mb-2 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                       Forgot your password?
                     </h1>
-                    <p className="font-light text-gray-500 dark:text-gray-400">
+                    <p className=" text-gray-600 dark:text-gray-400">
                       {"Don't"} fret! Just type in your email and we will send
                       you a code to reset your password!
                     </p>

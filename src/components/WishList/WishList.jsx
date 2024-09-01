@@ -127,9 +127,17 @@ export default function WishList() {
                           </span>{" "}
                         </li>
                         <li className="dark:text-gray-400 text-gray-600">
-                          Available quantity :{" "}
-                          <span className="text-black dark:text-white font-semibold">
-                            {product?.quantity}
+                          Status :{" "}
+                          <span
+                            className={`${
+                              product?.quantity > 0
+                                ? "text-green-500"
+                                : "text-red-500"
+                            }  font-semibold`}
+                          >
+                            {product?.quantity > 0
+                              ? "In stock now"
+                              : "Out of stock"}
                           </span>{" "}
                         </li>
                       </ul>

@@ -5,11 +5,15 @@ import useAddDeleteCart from "../../Hooks/AddDeleteCart/useAddDeleteCart";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import ProductCard from "../ProductCard/ProductCard";
+import AccessModal from "../AccessModal/AccessModal";
 
 export default function ElectronicSlider() {
   const { data: allProducts } = useAllProducts();
 
   const [electronics, setElectronics] = useState([]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [ModalPlace, setModalPlace] = useState("");
 
   useEffect(() => {
     setElectronics(
@@ -20,6 +24,9 @@ export default function ElectronicSlider() {
   const { addProduct, deleteItem, currentId, loading } = useAddDeleteCart();
   return (
     <section id="eleSlider" className="container mt-28">
+      {openModal && (
+        <AccessModal setOpenModal={setOpenModal} place={ModalPlace} />
+      )}
       <Title title={"Electronics"} my={"mt-8"} mx={"mx-auto"} />
       <div className="ele-slider row pt-1 relative">
         <Swiper
@@ -66,6 +73,8 @@ export default function ElectronicSlider() {
                 currentId={currentId}
                 loading={loading}
                 deleteItem={deleteItem}
+                setModalPlace={setModalPlace}
+                setOpenModal={setOpenModal}
               />
             </SwiperSlide>
           ))}

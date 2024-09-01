@@ -15,7 +15,6 @@ export default function Categories() {
       );
       return data;
     } catch (error) {
-      console.error(error);
       return error;
     }
   }

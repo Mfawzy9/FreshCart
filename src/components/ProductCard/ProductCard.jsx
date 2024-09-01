@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import * as bootstrapIcons from "react-icons/bs"; //bootstrap icons
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RatingStars from "../RatingStars/RatingStars";
 import QuantityInput from "../CartItem/QuantityInput";
 import { CartContext } from "../../Context/CartContext/CartContext";
 import { WishListContext } from "../../Context/WishListContext/WishListContext";
 import AddToWishListCheckBox from "../AddToWishListCheckBox/AddToWishListCheckBox";
 import SaleBadge from "../SaleBadge/SaleBadge";
+import { UserContext } from "../../Context/UserContext/UserContext";
 
 export default function ProductCard({
   product,
@@ -15,10 +16,14 @@ export default function ProductCard({
   currentId,
   deleteItem,
   addProduct,
+  setOpenModal,
+  setModalPlace,
 }) {
+  const navigate = useNavigate();
   const { cart } = useContext(CartContext);
   const { deleteProductFromWishList, wishListIds } =
     useContext(WishListContext);
+  const { userLogin } = useContext(UserContext);
 
   return (
     <>
@@ -68,7 +73,11 @@ export default function ProductCard({
               )}
             </div>
 
-            <AddToWishListCheckBox product={product} />
+            <AddToWishListCheckBox
+              product={product}
+              setModalPlace={setModalPlace}
+              setOpenModal={setOpenModal}
+            />
             <div className="flex w-full flex-col absolute z-30 group-hover/card:bottom-0 group-hover/card:opacity-100  -bottom-[17rem] transition-all duration-500 bg-black/80">
               <div className="p-2 flex flex-col  gap-2">
                 <div className="flex justify-between items-center">
@@ -137,56 +146,80 @@ export default function ProductCard({
                   )}
                 </div>
               </div>
-              {cart?.data?.products.some(
-                (_productObj) => _productObj.product?.id === product?.id
-              ) ? (
-                <div className="flex flex-col gap-2 px-1 ">
-                  <div className="group-hover/card:translate-x-0 -translate-x-[110%] transition-all duration-700 delay-150">
-                    <QuantityInput productId={product?.id} />
-                  </div>
+              {userLogin ? (
+                <>
+                  {cart?.data?.products.some(
+                    (_productObj) => _productObj.product?.id === product?.id
+                  ) ? (
+                    <div className="flex flex-col gap-2 px-1 ">
+                      <div className="group-hover/card:translate-x-0 -translate-x-[110%] transition-all duration-700 delay-150">
+                        <QuantityInput productId={product?.id} />
+                      </div>
 
-                  <div className="btns flex justify-between p-2 pt-0 items-center">
-                    <button
-                      disabled={currentId === product?.id && loading}
-                      onClick={() => deleteItem(product?.id)}
-                      className="group-hover/card:translate-x-0 translate-x-[110%] transition-all duration-700 delay-150 disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-red-700 focus:ring-4 focus:ring-red-300 inline-flex items-center rounded-lg text-white justify-center"
-                    >
-                      {currentId === product?.id && loading ? (
-                        <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
-                      ) : (
-                        <span className=" flex items-center">
-                          <bootstrapIcons.BsFillCartDashFill className="me-2 text-xl" />
-                          Remove from cart
-                        </span>
-                      )}
-                      <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
-                    </button>
-                  </div>
-                </div>
+                      <div className="btns flex justify-between p-2 pt-0 items-center">
+                        <button
+                          disabled={currentId === product?.id && loading}
+                          onClick={() => deleteItem(product?.id)}
+                          className="group-hover/card:translate-x-0 translate-x-[110%] transition-all duration-700 delay-150 disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-red-700 focus:ring-4 focus:ring-red-300 inline-flex items-center rounded-lg text-white justify-center"
+                        >
+                          {currentId === product?.id && loading ? (
+                            <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
+                          ) : (
+                            <span className=" flex items-center">
+                              <bootstrapIcons.BsFillCartDashFill className="me-2 text-xl" />
+                              Remove from cart
+                            </span>
+                          )}
+                          <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="group-hover/card:translate-x-0 -translate-x-[110%] transition-all duration-700 delay-150 btns flex justify-between p-2 pt-0 items-center">
+                      <button
+                        type="button"
+                        disabled={currentId === product?.id && loading}
+                        onClick={() => {
+                          addProduct(product?.id),
+                            wishListIds.some((p) => p === product?.id)
+                              ? deleteProductFromWishList(product?.id)
+                              : null;
+                        }}
+                        className="disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-blue-300 inline-flex items-center rounded-lg text-white justify-center"
+                      >
+                        {currentId === product?.id && loading ? (
+                          <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
+                        ) : (
+                          <span className=" flex items-center">
+                            <fontAwesome.FaCartPlus className="mr-2 text-xl" />
+                            Add to cart
+                          </span>
+                        )}
+                        <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+                      </button>
+                    </div>
+                  )}
+                </>
               ) : (
-                <div className="group-hover/card:translate-x-0 -translate-x-[110%] transition-all duration-700 delay-150 btns flex justify-between p-2 pt-0 items-center">
-                  <button
-                    type="button"
-                    disabled={currentId === product?.id && loading}
-                    onClick={() => {
-                      addProduct(product?.id),
-                        wishListIds.some((p) => product.id)
-                          ? deleteProductFromWishList(product?.id)
-                          : null;
-                    }}
-                    className="disabled:cursor-not-allowed w-full p-2 group relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-blue-300 inline-flex items-center rounded-lg text-white justify-center"
-                  >
-                    {currentId === product?.id && loading ? (
-                      <fontAwesome.FaSpinner className="mr-2 text-xl animate-spin" />
-                    ) : (
+                <>
+                  <div className="group-hover/card:translate-x-0 -translate-x-[110%] transition-all duration-700 delay-150 btns flex justify-between p-2 pt-0 items-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpenModal(true);
+                        setModalPlace("Cart");
+                      }}
+                      className=" w-full p-2 group relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-blue-300 inline-flex items-center rounded-lg text-white justify-center"
+                    >
                       <span className=" flex items-center">
                         <fontAwesome.FaCartPlus className="mr-2 text-xl" />
                         Add to cart
                       </span>
-                    )}
-                    <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
-                  </button>
-                </div>
+
+                      <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           </div>

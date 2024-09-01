@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -14,7 +13,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import useAddDeleteCart from "../../Hooks/AddDeleteCart/useAddDeleteCart";
 import useAllProducts from "../../Hooks/AllProducts/useAllProducts";
 
-export default function RelatedProducts() {
+export default function RelatedProducts({ setModalPlace, setOpenModal }) {
   const { id, category } = useParams();
 
   const { isLoading, data: allProducts } = useAllProducts(id);
@@ -87,6 +86,8 @@ export default function RelatedProducts() {
                 currentId={currentId}
                 loading={loading}
                 deleteItem={deleteItem}
+                setModalPlace={setModalPlace}
+                setOpenModal={setOpenModal}
               />
             </SwiperSlide>
           ))}
