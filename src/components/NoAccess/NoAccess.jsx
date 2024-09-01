@@ -52,7 +52,7 @@ export default function NoAccess() {
               </div>
               <span className="text-2xl font-bold">OR</span>
               <button
-                onClick={() => navigate(-1)}
+                onClick={() => navigate(-3)}
                 className="group mt-2 relative overflow-hidden bg-orange-700 focus:ring-4 focus:ring-green-300 inline-flex items-center px-3 sm:px-7 py-2.5 rounded-lg text-white justify-center"
               >
                 <span className="z-40 flex items-center">
