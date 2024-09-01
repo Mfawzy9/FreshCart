@@ -123,7 +123,7 @@ export default function SignUp() {
         <title>Register</title>
       </Helmet>
       <>
-        <section className="signup-section min-h-screen">
+        <section className="min-h-screen dark:bg-zinc-900 bg-zinc-50">
           <div className="container">
             <div className="container pt-16 h-full">
               <form

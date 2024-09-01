@@ -194,9 +194,9 @@ const unauthRoutes = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <PagesAnimation>
+          <PagesAni2>
             <Login />
-          </PagesAnimation>
+          </PagesAni2>
         ),
       },
       {

@@ -127,6 +127,32 @@ export const UserContextProvider = ({ children }) => {
     }
   }
 
+  //dark mode
+  const [isDarkMode, setDarkMode] = useState(false);
+  function toggleDarkMode() {
+    const html = document.documentElement;
+    if (html.classList.contains("dark")) {
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "true");
+      setDarkMode(true);
+    } else {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "false");
+      setDarkMode(false);
+    }
+  }
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "true") {
+      document.documentElement.classList.remove("dark");
+      setDarkMode(true);
+    } else {
+      document.documentElement.classList.add("dark");
+      setDarkMode(false);
+    }
+  }, []);
+
   return (
     <UserContext.Provider
       value={{
@@ -143,6 +169,8 @@ export const UserContextProvider = ({ children }) => {
         deleteAddress,
         updateData,
         updatePassword,
+        toggleDarkMode,
+        isDarkMode,
       }}
     >
       {children}

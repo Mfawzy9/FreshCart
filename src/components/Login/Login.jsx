@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import { useFormik } from "formik";
-import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Label, TextInput } from "flowbite-react";
@@ -81,7 +80,7 @@ export default function Login() {
         <title>Fresh Cart</title>
       </Helmet>
       <>
-        <section className="login-section">
+        <section className="dark:bg-zinc-900 bg-zinc-50">
           <div className="container">
             <form
               className="max-w-lg m-auto  min-h-screen flex flex-col pt-32 gap-3 dark:text-white relative"
@@ -122,7 +121,7 @@ export default function Login() {
                   onChange={formik.handleChange}
                   type="email"
                   icon={fontAwesome.FaEnvelope}
-                  placeholder="example@gmail.com"
+                  placeholder="Email"
                 />
                 {formik.errors.email && formik.touched.email ? (
                   <>

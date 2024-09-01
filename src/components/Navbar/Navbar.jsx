@@ -21,6 +21,8 @@ export default function NavBar() {
     setUserName,
     userEmail,
     setUserEmail,
+    toggleDarkMode,
+    isDarkMode,
   } = useContext(UserContext);
 
   //  Cart
@@ -29,32 +31,6 @@ export default function NavBar() {
   const { wishListCount } = useContext(WishListContext);
   //orders
   const { ordersCount } = useContext(OrdersContext);
-
-  //dark mode
-  const [isDarkMode, setDarkMode] = useState(false);
-  function toggleDarkMode(checked) {
-    const html = document.documentElement;
-    if (html.classList.contains("dark")) {
-      html.classList.remove("dark");
-      localStorage.setItem("theme", "true");
-      setDarkMode(true);
-    } else {
-      html.classList.add("dark");
-      localStorage.setItem("theme", "false");
-      setDarkMode(false);
-    }
-  }
-
-  useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "true") {
-      document.documentElement.classList.remove("dark");
-      setDarkMode(true);
-    } else {
-      document.documentElement.classList.add("dark");
-      setDarkMode(false);
-    }
-  }, []);
 
   function logOut() {
     localStorage.removeItem("userToken");
