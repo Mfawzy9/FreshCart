@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import saleImg from "../../assets/imgs/discountBg.jpg";
@@ -26,6 +26,8 @@ const imgs = Object.values(
 export default function Home() {
   const { isLoading } = useAllProducts();
 
+  const bestCategoriesRef = useRef(null);
+
   if (isLoading) {
     return <MainLoading />;
   }
@@ -36,10 +38,23 @@ export default function Home() {
         <title>Home</title>
       </Helmet>
       {/* main slider*/}
-      <HomeSlider />
+      <div className="relative">
+        <HomeSlider />
+        <div
+          onClick={() => {
+            bestCategoriesRef.current.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="scrolldown hidden lg:block absolute bottom-5 xl:bottom-20 2xl:bottom-52 4xl:bottom-20 left-1/2 -translate-x-1/2  z-50"
+        >
+          <div className="chevrons">
+            <div className="chevrondown" />
+            <div className="chevrondown" />
+          </div>
+        </div>
+      </div>
 
       {/* best categories */}
-      <div className="container ">
+      <div ref={bestCategoriesRef} className="container ">
         <section className="pt-20 xl:px-44">
           <Title title={"Best Categories"} my={"my-8"} mx={"mx-auto"} />
           <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-2 gap-14 sm:gap-8 justify-items-center">

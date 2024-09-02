@@ -9,7 +9,7 @@ import "./HomeSlider.css";
 
 export default function HomeSlider() {
   return (
-    <section className="w-full main-slider 4xl:container pt-20">
+    <section className="w-full main-slider 4xl:container pt-20 relative">
       <Swiper
         autoplay={{
           delay: 7000,
@@ -19,7 +19,7 @@ export default function HomeSlider() {
         speed={800}
         navigation={true}
         modules={[EffectFade, Navigation, Autoplay]}
-        className="text-white"
+        className="text-white "
       >
         <SwiperSlide className="">
           <div className="relative w-full">
@@ -68,14 +68,14 @@ export default function HomeSlider() {
               src={manSlider}
               alt="men Fashion"
             />
-            <div className="w-3/4 absolute top-1/2 -translate-y-1/2 4xl:-translate-y-1/2 -translate-x-1/2 left-1/2 flex flex-col gap-1 text-center md:text-start items-start justify-center">
+            <div className="w-3/4 absolute top-1/2 -translate-y-1/2 2xl:-translate-y-3/4 4xl:-translate-y-1/2 -translate-x-1/2 left-[45%] flex flex-col gap-1 text-center md:text-start items-start justify-center">
               <h3
                 style={{ animationDelay: "0.5s" }}
                 className="text-[5vw] lg:text-5xl font-extrabold italic w-full lg:w-3/4 text-blue-600 sub-font"
               >
                 Your Style !
               </h3>
-              <p className="lg:space-y-5 text-[4vw] lg:text-5xl lg:w-3/4 M-font whitespace-break-spaces leading-relaxed tracking-wider sm:p-3">
+              <p className="lg:space-y-5 text-[4vw] lg:text-5xl w-full lg:w-3/4 M-font whitespace-break-spaces leading-relaxed tracking-wider sm:p-3">
                 <span
                   className="inline-block leading-snug"
                   style={{ animationDelay: "0.7s" }}
