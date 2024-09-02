@@ -192,7 +192,7 @@ export default function ProductDetails() {
                         </span>
                         <img
                           src={productDetails?.category?.image}
-                          className="w-12 h-10"
+                          className="w-12 h-10 rounded-lg"
                           alt=""
                         />
                       </Link>
@@ -209,7 +209,7 @@ export default function ProductDetails() {
                         </span>
                         <img
                           src={productDetails?.brand?.image}
-                          className="w-12 h-10"
+                          className="w-12 h-10 rounded-lg"
                           alt=""
                         />
                       </Link>
@@ -224,10 +224,18 @@ export default function ProductDetails() {
 
                     <li className="dark:text-gray-400 text-gray-600 flex flex-wrap gap-2 items-center">
                       <fontAwesome.FaCircle className="text-[9px]" />
-                      Available quantity:{" "}
-                      <span className="text-black dark:text-white font-semibold">
-                        {productDetails?.quantity} pieces left
-                      </span>
+                      Status :{" "}
+                      <span
+                        className={`${
+                          productDetails?.quantity > 0
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }  font-semibold`}
+                      >
+                        {productDetails?.quantity > 0
+                          ? "In stock now"
+                          : "Out of stock"}
+                      </span>{" "}
                     </li>
                     <li className="dark:text-gray-400 text-gray-600 flex flex-wrap gap-2 items-center">
                       <fontAwesome.FaCircle className="text-[9px]" />
