@@ -29,7 +29,7 @@ export default function OrdersContextProvider({ children }) {
     isFetching,
     refetch,
   } = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["orders", id],
     queryFn: getUserOrders,
     select: (data) => data.data,
     staleTime: 1000 * 60 * 60, // 1 hour

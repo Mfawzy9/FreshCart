@@ -8,7 +8,6 @@ import * as Yup from "yup";
 import { UserContext } from "../../Context/UserContext/UserContext.jsx";
 import MainLoading from "../MainLoading/MainLoading.jsx";
 import { Helmet } from "react-helmet";
-import { OrdersContext } from "../../Context/OrdersContext/OrdersContext.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -29,7 +28,6 @@ export default function Login() {
   const [resError, setResError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { setUserLogin, setUserName, setUserEmail } = useContext(UserContext);
-  const { refetch } = useContext(OrdersContext);
 
   async function formSubmit(values) {
     setIsLoading(true);
@@ -48,9 +46,6 @@ export default function Login() {
         localStorage.setItem("userEmail", data.user.email);
         navigate("/");
         window.scrollTo(0, 0);
-        setTimeout(() => {
-          refetch();
-        }, 1);
       }
       setIsLoading(false);
     } catch (error) {
