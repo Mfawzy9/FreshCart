@@ -76,12 +76,17 @@ export default function UserSettings() {
   const passwordValidation = Yup.object().shape({
     currentPassword: Yup.string().required("Current password Is Requierd"),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .max(15, "Password must be at most 15 characters")
-      .matches(
-        /^[A-Z].{6,15}$/,
-        "password must start at least with one capital letter and at least 6 characters and maximum 15 characters"
-      )
+      .min(8)
+      .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/, {
+        message: (
+          <ul className="list-none flex flex-col gap-1 font-medium">
+            <li>password must start with uppercase letter,</li>
+            <li>at least 8 characters,</li>
+            <li>at least one number,</li>
+            <li>and one special character (#?!@$%^&*-)</li>
+          </ul>
+        ),
+      })
       .required("Password Is Requierd"),
     rePassword: Yup.string()
       .oneOf([Yup.ref("password")], "Password not matched")

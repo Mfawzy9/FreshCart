@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import { UserContext } from "../../Context/UserContext/UserContext.jsx";
 import { Bounce, toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import MainLoading from "../MainLoading/MainLoading.jsx";
 
 export default function SignUp() {
   const [showPass, setShowPass] = useState(false);
@@ -26,14 +27,14 @@ export default function SignUp() {
       .matches(/^01[0125][0-9]{8}$/, "Phone Number Must Be Egyptian")
       .required("Phone Number Is Required"),
     password: Yup.string()
-      .min(6)
-      .max(15)
-      .matches(/^[A-Z].{6,15}$/, {
+      .min(8)
+      .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/, {
         message: (
           <ul className="list-none flex flex-col gap-1 font-medium">
-            <li>password must start at least with one capital letter</li>
-            <li>and at least 6 characters</li>
-            <li>and maximum 15 characters</li>{" "}
+            <li>password must start with uppercase letter,</li>
+            <li>at least 8 characters,</li>
+            <li>at least one number,</li>
+            <li>and one special character (#?!@$%^&*-)</li>
           </ul>
         ),
       })
@@ -110,11 +111,7 @@ export default function SignUp() {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="loading fixed top-0 left-0 bottom-0 right-0 flex justify-center items-center w-full h-full bg-black/75 z-50">
-        <span className="loader" />
-      </div>
-    );
+    return <MainLoading />;
   }
 
   return (
@@ -421,7 +418,7 @@ export default function SignUp() {
                     value={formik.values.rePassword}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    type="password"
+                    type={showPass ? "text" : "password"}
                     icon={fontAwesome.FaLock}
                     placeholder="Confirm Password"
                   />
@@ -447,7 +444,9 @@ export default function SignUp() {
                     </>
                   ) : null}
                   {!formik.errors.rePassword && formik.touched.rePassword ? (
-                    <></>
+                    <>
+                      <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
+                    </>
                   ) : null}
                 </div>
 

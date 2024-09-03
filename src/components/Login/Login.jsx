@@ -17,15 +17,11 @@ export default function Login() {
   const formValidation = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email Is Required"),
     password: Yup.string()
-      .min(
-        6,
-        "password must start at least with one capital letter and at least 6 characters and maximum 15 characters"
+      .min(8)
+      .matches(
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/,
+        "Wrong Password, it doesn't match the conditions"
       )
-      .max(
-        15,
-        "password must start at least with one capital letter and at least 6 characters and maximum 15 characters"
-      )
-      .matches(/^[A-Z].{6,15}$/, "Wrong Password")
       .required("Password Is Requierd"),
   });
 

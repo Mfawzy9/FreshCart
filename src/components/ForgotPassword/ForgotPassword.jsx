@@ -111,14 +111,14 @@ export default function ForgotPassword() {
   //password form
   const passValidation = Yup.object().shape({
     newPassword: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .max(15, "Password must be at most 15 characters")
-      .matches(/^[A-Z].{6,15}$/, {
+      .min(8)
+      .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/, {
         message: (
           <ul className="list-none flex flex-col gap-1 font-medium">
-            <li>password must start at least with one capital letter</li>
-            <li>and at least 6 characters</li>
-            <li>and maximum 15 characters</li>{" "}
+            <li>password must start with uppercase letter,</li>
+            <li>at least 8 characters,</li>
+            <li>at least one number,</li>
+            <li>and one special character (#?!@$%^&*-)</li>
           </ul>
         ),
       })
