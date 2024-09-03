@@ -1,7 +1,7 @@
 import React from "react";
 import "./TopArrow.css";
 
-export default function TopArrow({ display }) {
+export default function TopArrow() {
   return (
     <button
       onClick={() => window.scrollTo(0, 0)}

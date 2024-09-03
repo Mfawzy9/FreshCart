@@ -76,7 +76,10 @@ export default function UserSettings() {
   const passwordValidation = Yup.object().shape({
     currentPassword: Yup.string().required("Current password Is Requierd"),
     password: Yup.string()
-      .min(8)
+      .min(
+        8,
+        <p className="font-medium"> password must be at least 8 characters</p>
+      )
       .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$/, {
         message: (
           <ul className="list-none flex flex-col gap-1 font-medium">
@@ -87,7 +90,7 @@ export default function UserSettings() {
           </ul>
         ),
       })
-      .required("Password Is Requierd"),
+      .required(<p className="font-medium">Password Is Required</p>),
     rePassword: Yup.string()
       .oneOf([Yup.ref("password")], "Password not matched")
       .required("Please Confirm Your Password"),
@@ -579,9 +582,8 @@ export default function UserSettings() {
                             role="alert"
                           >
                             <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
-                            <p className="font-medium">
-                              {newPasswordFormik.errors.password}
-                            </p>
+
+                            {newPasswordFormik.errors.password}
                           </div>
                         </>
                       ) : null}

@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import * as bootstrapIcons from "react-icons/bs"; //bootstrap icons
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RatingStars from "../RatingStars/RatingStars";
 import QuantityInput from "../CartItem/QuantityInput";
 import { CartContext } from "../../Context/CartContext/CartContext";
@@ -19,7 +19,6 @@ export default function ProductCard({
   setOpenModal,
   setModalPlace,
 }) {
-  const navigate = useNavigate();
   const { cart } = useContext(CartContext);
   const { deleteProductFromWishList, wishListIds } =
     useContext(WishListContext);

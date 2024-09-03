@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import * as bootstrapIcons from "react-icons/bs"; //bootstrap icons
 import { Link } from "react-router-dom";
 import { WishListContext } from "../../Context/WishListContext/WishListContext";
 import RatingStars from "../RatingStars/RatingStars";
 import MainLoading from "../MainLoading/MainLoading";
-import { UserContext } from "../../Context/UserContext/UserContext";
 import { CartContext } from "../../Context/CartContext/CartContext";
 import { FaHeartCircleMinus } from "react-icons/fa6";
 import SaleBadge from "../SaleBadge/SaleBadge";

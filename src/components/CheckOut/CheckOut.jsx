@@ -3,9 +3,8 @@ import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 
 import { useFormik } from "formik";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as Yup from "yup";
-import { UserContext } from "../../Context/UserContext/UserContext.jsx";
 import MainLoading from "../MainLoading/MainLoading.jsx";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { CartContext } from "../../Context/CartContext/CartContext.jsx";

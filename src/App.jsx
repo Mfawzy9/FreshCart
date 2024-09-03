@@ -1,9 +1,5 @@
 import { useContext } from "react";
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Layout from "./components/Layout/Layout";
 import Categories from "./components/Categories/Categories";

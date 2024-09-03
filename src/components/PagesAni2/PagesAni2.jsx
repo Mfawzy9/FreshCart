@@ -13,7 +13,6 @@ export default function PagesAni2({ children }) {
         className="w-full "
         transition={{
           ease: "easeInOut",
-
           duration: 0.4,
         }}
         variants={rotateY}

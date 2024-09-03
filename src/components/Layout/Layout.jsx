@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
 import NavBar from "../Navbar/Navbar";
-import { UserContext } from "../../Context/UserContext/UserContext";
 import TopArrow from "../TopArrow/TopArrow";
 import { AnimatePresence, motion } from "framer-motion";
 
