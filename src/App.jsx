@@ -404,7 +404,6 @@ function App() {
               <CartContextProvider>
                 <OrdersContextProvider>
                   <RouteHandler />
-
                   <ToastContainer />
                   <Offline>
                     <motion.div

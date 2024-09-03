@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import { MdOutlineShareLocation } from "react-icons/md";
 import { OrdersContext } from "../../Context/OrdersContext/OrdersContext";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import MainLoading from "../MainLoading/MainLoading";
 import RatingStars from "../RatingStars/RatingStars";
 import { Helmet } from "react-helmet";
 
 export default function Order() {
+  const navigate = useNavigate();
   const { orderId } = useParams();
 
   const { orders, isLoading } = useContext(OrdersContext);
@@ -22,7 +23,10 @@ export default function Order() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    orders?.length == 0 || orders?.some((order) => order?.id != orderId)
+      ? navigate("/allOrders")
+      : null;
+  }, [orders]);
 
   if (isLoading) {
     return <MainLoading />;
