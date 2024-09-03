@@ -23,7 +23,7 @@ export default function Order() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    orders?.length == 0 || orders?.some((order) => order?.id != orderId)
+    orders?.length == 0 || !orders?.some((order) => order?.id !== orderId)
       ? navigate("/allOrders")
       : null;
   }, [orders]);
