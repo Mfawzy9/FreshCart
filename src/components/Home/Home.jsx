@@ -131,25 +131,25 @@ export default function Home() {
         </section>
       </div>
       {/* sale section */}
-      <motion.section
-        initial={{
-          opacity: 0,
-          scale: 0.3,
-        }}
-        whileInView={{
-          opacity: 1,
-          scale: 1,
-          transition: { duration: 0.5 },
-        }}
-        className="relative group/sec my-24"
-      >
+      <section className="relative group/sec my-24">
         <div className="relative 4xl:container">
           <img
             src={saleImg}
             className="brightness-[0.4] xl:h-96 w-full group-hover/sec:brightness-90 transition-all duration-1000"
             alt=""
           />
-          <div className="absolute container xl:pl-32 inset-0 sm:ml-32 justify-start sm:justify-center items-center flex flex-col gap-2 sm:gap-5 w-fit text-white">
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.3,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+              transition: { duration: 0.9 },
+            }}
+            className="absolute container xl:pl-32 inset-0 sm:ml-32 justify-start sm:justify-center items-center flex flex-col gap-2 sm:gap-5 w-fit text-white"
+          >
             <span className="text-white sm:pr-10 group-hover/sec:bg-red-800/80 transition-all duration-500 bg-red-800/40 p-2 rounded-se-full sub-font italic text-[4vw] lg:text-5xl">
               Hurry Up !{" "}
             </span>
@@ -164,9 +164,9 @@ export default function Home() {
                 Shop Now!
               </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
-      </motion.section>
+      </section>
 
       {/* ele slider */}
       <ElectronicSlider />
