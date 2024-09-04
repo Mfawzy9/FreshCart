@@ -26,19 +26,6 @@ export const UserContextProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState();
   const [userAddresses, setUserAddresses] = useState([]);
 
-  useEffect(() => {
-    if (localStorage.getItem("userToken")) {
-      setUserLogin(localStorage.getItem("userToken"));
-      setUserName(localStorage.getItem("userName"));
-      setUserEmail(localStorage.getItem("userEmail"));
-      getUserAddresses();
-    } else {
-      setUserLogin(null);
-      setUserName(null);
-      setUserEmail(null);
-    }
-  }, []);
-
   async function getUserAddresses() {
     try {
       const { data } = await axios.get(
@@ -47,7 +34,7 @@ export const UserContextProvider = ({ children }) => {
       );
       setUserAddresses(data?.data);
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -78,7 +65,6 @@ export const UserContextProvider = ({ children }) => {
         setUserAddresses(data?.data);
         toast.success(data?.message, successToast);
       }
-
       return data;
     } catch (error) {
       return error;
@@ -136,6 +122,19 @@ export const UserContextProvider = ({ children }) => {
       setDarkMode(false);
     }
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("userToken")) {
+      setUserLogin(localStorage.getItem("userToken"));
+      setUserName(localStorage.getItem("userName"));
+      setUserEmail(localStorage.getItem("userEmail"));
+      getUserAddresses();
+    } else {
+      setUserLogin(null);
+      setUserName(null);
+      setUserEmail(null);
+    }
+  }, [userLogin]);
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
