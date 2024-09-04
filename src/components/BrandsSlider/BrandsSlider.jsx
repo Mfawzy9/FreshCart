@@ -9,7 +9,7 @@ export default function BrandsSlider() {
   const { data: brands } = useAllBrands();
 
   if (!brands) {
-    return <MainLoading />;
+    return <></>;
   }
   const duplicatedBrands = [...brands, ...brands];
   return (
