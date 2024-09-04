@@ -30,7 +30,7 @@ export default function NoAccess() {
               <div className="flex items-center flex-wrap justify-center gap-3 mt-4">
                 <Link
                   to={"/login"}
-                  className="group mt-2 relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-green-300 inline-flex items-center px-3 sm:px-7 py-2.5 rounded-lg text-white justify-center"
+                  className="group mt-2 relative overflow-hidden bg-blue-700 focus:ring-4 focus:ring-blue-300 inline-flex items-center px-3 sm:px-7 py-2.5 rounded-lg text-white justify-center"
                 >
                   <span className="z-40 flex items-center">
                     <VscSignIn className="me-2 text-xl" />
@@ -40,7 +40,7 @@ export default function NoAccess() {
                 </Link>
                 <Link
                   to={"/signup"}
-                  className="group mt-2 relative overflow-hidden bg-green-700 focus:ring-4 focus:ring-orange-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center"
+                  className="group mt-2 relative overflow-hidden bg-green-700 focus:ring-4 focus:ring-green-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center"
                 >
                   <span className="z-40 flex items-center">
                     <fontAwesome.FaUserPlus className="me-2 text-xl" />
@@ -52,7 +52,7 @@ export default function NoAccess() {
               <span className="text-2xl font-bold">OR</span>
               <button
                 onClick={() => navigate("/")}
-                className="group mt-2 relative overflow-hidden bg-orange-700 focus:ring-4 focus:ring-green-300 inline-flex items-center px-3 sm:px-7 py-2.5 rounded-lg text-white justify-center"
+                className="group mt-2 relative overflow-hidden bg-orange-700 focus:ring-4 focus:ring-orange-300 inline-flex items-center px-3 sm:px-7 py-2.5 rounded-lg text-white justify-center"
               >
                 <span className="z-40 flex items-center">
                   <fontAwesome.FaHome className="me-2 text-xl" />

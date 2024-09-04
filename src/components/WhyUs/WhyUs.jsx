@@ -45,19 +45,7 @@ export default function WhyUs() {
             </li>
           </ul>
         </motion.div>
-        <motion.img
-          initial={{
-            opacity: 0,
-            x: 100,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-            transition: { duration: 0.9 },
-          }}
-          src={whyUs}
-          className="w-full object-contain rounded-md"
-        />
+        <img src={whyUs} className="w-full object-contain rounded-md" />
       </div>
     </div>
   );

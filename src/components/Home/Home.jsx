@@ -44,7 +44,7 @@ export default function Home() {
           onClick={() => {
             bestCategoriesRef.current.scrollIntoView({ behavior: "smooth" });
           }}
-          className="scrolldown hidden lg:block absolute bottom-5 xl:bottom-20 2xl:bottom-52 4xl:bottom-20 left-1/2 -translate-x-1/2  z-50"
+          className="scrolldown hidden lg:block absolute bottom-5 xl:bottom-20 2xl:bottom-52 4xl:bottom-20 left-1/2 -translate-x-1/2  z-30"
         >
           <div className="chevrons">
             <div className="chevrondown" />
@@ -131,26 +131,26 @@ export default function Home() {
         </section>
       </div>
       {/* sale section */}
-      <section className="relative group/sec my-24">
+      <motion.section
+        initial={{
+          opacity: 0,
+          scale: 0.3,
+        }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+          transition: { duration: 0.5 },
+        }}
+        className="relative group/sec my-24"
+      >
         <div className="relative 4xl:container">
           <img
             src={saleImg}
             className="brightness-[0.4] xl:h-96 w-full group-hover/sec:brightness-90 transition-all duration-1000"
             alt=""
           />
-          <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.3,
-            }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-              transition: { duration: 0.9 },
-            }}
-            className="absolute container xl:pl-32 inset-0 sm:ml-32 justify-start sm:justify-center items-center flex flex-col gap-2 sm:gap-5 w-fit text-white"
-          >
-            <span className="text-white pr-10 group-hover/sec:bg-red-800/80 transition-all duration-500 bg-red-800/40 p-2 rounded-se-full sub-font italic text-[4vw] lg:text-5xl">
+          <div className="absolute container xl:pl-32 inset-0 sm:ml-32 justify-start sm:justify-center items-center flex flex-col gap-2 sm:gap-5 w-fit text-white">
+            <span className="text-white sm:pr-10 group-hover/sec:bg-red-800/80 transition-all duration-500 bg-red-800/40 p-2 rounded-se-full sub-font italic text-[4vw] lg:text-5xl">
               Hurry Up !{" "}
             </span>
             <span className="text-[4vw] text-gray-200 font-semibold lg:text-5xl">
@@ -159,15 +159,14 @@ export default function Home() {
                 60% Off
               </span>
             </span>
-
             <Link to={"/saleProducts"} onClick={() => scrollTo(0, 0)}>
-              <button className="btn px-2 py-1 sm:px-5 sm:py-3">
+              <button className="btn text-xs sm:text-sm md:text-lg lg:text-xl px-2 py-1 sm:px-5 sm:py-3">
                 Shop Now!
               </button>
             </Link>
-          </motion.div>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ele slider */}
       <ElectronicSlider />
