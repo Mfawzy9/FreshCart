@@ -11,17 +11,19 @@ import { CartContext } from "../../Context/CartContext/CartContext.jsx";
 import { Bounce, toast } from "react-toastify";
 import { OrdersContext } from "../../Context/OrdersContext/OrdersContext.jsx";
 import { Helmet } from "react-helmet";
+import { UserContext } from "../../Context/UserContext/UserContext.jsx";
 
 export default function CheckOut() {
   const { cartId } = useParams();
   const { clearCart } = useContext(CartContext);
+  const { userAddresses } = useContext(UserContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const [cashSuccess, setCashSuccess] = useState(false);
   const [thank, setThank] = useState(null);
 
   const formValidation = Yup.object().shape({
-    details: Yup.string().required("Details Is Required"),
+    details: Yup.string().min(10).required("Details Is Required"),
     phone: Yup.string()
       .matches(/^01[0125][0-9]{8}$/, "Phone Number Must Be Egyptian")
       .required("Phone Number Is Required"),
@@ -30,9 +32,9 @@ export default function CheckOut() {
 
   const formik = useFormik({
     initialValues: {
-      details: "",
-      phone: "",
-      city: "",
+      details: userAddresses?.length === 0 ? "" : userAddresses?.[0]?.details,
+      phone: userAddresses?.length === 0 ? "" : userAddresses?.[0]?.phone,
+      city: userAddresses?.length === 0 ? "" : userAddresses?.[0]?.city,
     },
     validationSchema: formValidation,
     onSubmit: onlineSubmit,
@@ -153,7 +155,10 @@ export default function CheckOut() {
               <div className="text-center pb-6">
                 <h1 className="text-3xl font-bold">Your Shipping Address</h1>
               </div>
-              <form className="flex flex-col gap-3">
+              <form
+                // onSubmit={formik.handleSubmit}
+                className="flex flex-col gap-3"
+              >
                 <div
                   className={`${
                     formik.errors.details && formik.touched.details
@@ -262,7 +267,15 @@ export default function CheckOut() {
                 ) : null}
 
                 <button
-                  disabled={!(formik.isValid && formik.dirty)}
+                  disabled={
+                    formik.values.city == userAddresses?.[0]?.city &&
+                    formik.values.details == userAddresses?.[0]?.details &&
+                    formik.values.phone == userAddresses?.[0]?.phone
+                      ? false
+                      : !(formik.isValid && formik.dirty)
+                      ? true
+                      : false
+                  }
                   onClick={() => {
                     formik.handleSubmit();
                   }}
@@ -277,7 +290,15 @@ export default function CheckOut() {
                 </button>
               </form>
               <button
-                disabled={!(formik.isValid && formik.dirty)}
+                disabled={
+                  formik.values.city == userAddresses?.[0]?.city &&
+                  formik.values.details == userAddresses?.[0]?.details &&
+                  formik.values.phone == userAddresses?.[0]?.phone
+                    ? false
+                    : !(formik.isValid && formik.dirty)
+                    ? true
+                    : false
+                }
                 onClick={() => {
                   cashSubmit().then(() => {
                     formik.resetForm();

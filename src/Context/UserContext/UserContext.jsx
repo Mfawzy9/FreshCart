@@ -31,6 +31,7 @@ export const UserContextProvider = ({ children }) => {
       setUserLogin(localStorage.getItem("userToken"));
       setUserName(localStorage.getItem("userName"));
       setUserEmail(localStorage.getItem("userEmail"));
+      getUserAddresses();
     } else {
       setUserLogin(null);
       setUserName(null);
@@ -49,12 +50,6 @@ export const UserContextProvider = ({ children }) => {
       return error;
     }
   }
-
-  useEffect(() => {
-    if (userLogin) {
-      getUserAddresses();
-    }
-  }, []);
 
   async function addAddress(values) {
     try {

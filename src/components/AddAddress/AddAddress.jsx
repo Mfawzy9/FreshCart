@@ -18,7 +18,7 @@ export default function AddAddress() {
 
   const formValidation = Yup.object().shape({
     name: Yup.string().required("Name Is Required"),
-    details: Yup.string().required("Details Is Required"),
+    details: Yup.string().min(10).required("Details Is Required"),
     phone: Yup.string()
       .matches(/^01[0125][0-9]{8}$/, "Phone Number Must Be Egyptian")
       .required("Phone Number Is Required"),
