@@ -3,7 +3,6 @@ import useAllBrands from "../../Hooks/AllBrands/useAllBrands";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
-import MainLoading from "../MainLoading/MainLoading";
 
 export default function BrandsSlider() {
   const { data: brands } = useAllBrands();
