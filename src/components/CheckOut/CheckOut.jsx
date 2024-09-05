@@ -155,10 +155,7 @@ export default function CheckOut() {
               <div className="text-center pb-6">
                 <h1 className="text-3xl font-bold">Your Shipping Address</h1>
               </div>
-              <form
-                // onSubmit={formik.handleSubmit}
-                className="flex flex-col gap-3"
-              >
+              <form className="flex flex-col gap-3">
                 <div
                   className={`${
                     formik.errors.details && formik.touched.details

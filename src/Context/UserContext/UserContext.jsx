@@ -34,7 +34,7 @@ export const UserContextProvider = ({ children }) => {
       );
       setUserAddresses(data?.data);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 

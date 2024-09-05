@@ -68,7 +68,7 @@ export default function HomeSlider() {
               src={manSlider}
               alt="men Fashion"
             />
-            <div className="w-3/4 absolute top-1/2 -translate-y-1/2 2xl:-translate-y-3/4 4xl:-translate-y-1/2 -translate-x-1/2 left-[45%] flex flex-col gap-1 text-center md:text-start items-start justify-center">
+            <div className="w-3/4 absolute top-1/2 -translate-y-1/2 2xl:-translate-y-3/4 4xl:-translate-y-1/2 -translate-x-1/2 left-1/2 sm:left-[45%] flex flex-col gap-1 text-center md:text-start items-start justify-center">
               <h3
                 style={{ animationDelay: "0.5s" }}
                 className="text-[5vw] lg:text-5xl font-extrabold italic w-full lg:w-3/4 text-blue-600 sub-font"

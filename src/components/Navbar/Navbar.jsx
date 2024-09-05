@@ -62,7 +62,13 @@ export default function NavBar() {
             className="rounded-lg"
             label={
               <>
-                <fontAwesome.FaUserCircle className="text-4xl rounded ms-1" />
+                {userLogin ? (
+                  <span className="ms-1 w-9 h-9 rounded-full bg-blue-700 hover:bg-blue-800 flex items-center justify-center font-bold text-xl text-white">
+                    {userName.charAt(0)}
+                  </span>
+                ) : (
+                  <fontAwesome.FaUserCircle className="text-4xl rounded-full ms-1 outline outline-transparent hover:outline-gray-500" />
+                )}
               </>
             }
           >
@@ -105,8 +111,8 @@ export default function NavBar() {
                   to={"/login"}
                   className="flex flex-col px-3"
                 >
-                  <span className="cursor-pointer acc-link px-4 py-2 hover:text-white transition-all duration-300 flex items-center gap-1">
-                    <VscSignIn className="text-xl" />
+                  <span className="cursor-pointer acc-link px-4 py-2 hover:text-white transition-all duration-300 flex items-center">
+                    <VscSignIn className="text-xl me-2" />
                     Login
                   </span>
                 </Link>
@@ -115,8 +121,8 @@ export default function NavBar() {
                   to={"/signup"}
                   className="flex flex-col px-3"
                 >
-                  <span className="cursor-pointer acc-link px-4 py-2 hover:text-white transition-all duration-300 flex items-center gap-1 hover:bg-green-700 hover:[box-shadow:0_0_10px_#046c4e]">
-                    <fontAwesome.FaUserPlus className="[font-size:18px]" />
+                  <span className="cursor-pointer acc-link px-4 py-2 hover:text-white transition-all duration-300 flex items-center hover:bg-green-700 hover:[box-shadow:0_0_10px_#046c4e]">
+                    <fontAwesome.FaUserPlus className="[font-size:18px] me-2" />
                     Signup
                   </span>
                 </Link>
