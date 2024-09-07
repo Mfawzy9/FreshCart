@@ -39,48 +39,49 @@ const QuantityInput = ({ productId }) => {
     });
   }, [cart]);
 
+  function updateCountEvent() {
+    productCount == count
+      ? toast.error(`it's already ${count} !`, errorToast)
+      : count <= 0
+      ? toast.error("Enter a logical number 😠!", errorToast)
+      : updateCount(productId, count);
+  }
+
   return (
     <div className="flex items-center justify-center flex-wrap gap-4">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          productCount == count
-            ? toast.error(`it's already ${count} !`, errorToast)
-            : count <= 0
-            ? toast.error("Enter a logical number 😠!", errorToast)
-            : updateCount(productId, count);
+          updateCountEvent();
         }}
         className="flex items-center flex-wrap gap-3"
       >
         <div className="flex items-center max-w-[8rem]">
           <button
-            disabled={count <= 1}
+            disabled={count <= 1 || qtyLoading}
             type="button"
             onClick={(e) => setCount(count - 1)}
+            onBlur={qtyLoading ? null : updateCountEvent}
+            onMouseLeave={
+              productCount === count
+                ? null
+                : count == 1
+                ? updateCountEvent
+                : null
+            }
             id="decrement-button"
-            className="flex items-center disabled:cursor-not-allowed disabled:dark:bg-slate-600 disabled:dark:hover:bg-slate-600 disabled:bg-gray-300 bg-gray-100 hover:bg-blue-700 dark:bg-slate-700 dark:hover:bg-blue-700 dark:border-gray-600 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none "
+            className="flex items-center disabled:cursor-not-allowed disabled:dark:bg-slate-600 disabled:dark:hover:bg-slate-600 disabled:bg-gray-300 bg-gray-100 hover:bg-blue-700 dark:bg-slate-700 dark:hover:bg-blue-700 dark:border-gray-600 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none hover:text-white"
           >
-            <svg
-              className="w-3 h-3 text-gray-900 dark:text-white"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 2"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M1 1h16"
-              />
-            </svg>
+            <fontAwesome.FaMinus />
           </button>
           <input
             onKeyDown={(e) => {
               e.key === "0" && count === "" ? e.preventDefault() : null;
             }}
             onChange={(e) => setCount(e.target.value)}
+            onBlur={
+              qtyLoading || productCount === count ? null : updateCountEvent
+            }
             type="number"
             value={count}
             id="quantity-input"
@@ -88,26 +89,14 @@ const QuantityInput = ({ productId }) => {
             className=" bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-slate-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
           <button
+            disabled={qtyLoading}
             type="button"
             onClick={(e) => setCount(count + 1)}
+            onBlur={qtyLoading ? null : updateCountEvent}
             id="increment-button"
-            className="flex items-center disabled:cursor-not-allowed disabled:dark:bg-slate-600 disabled:dark:hover:bg-slate-600 disabled:bg-gray-300 bg-gray-100 hover:bg-blue-700 dark:bg-slate-700 dark:hover:bg-blue-700 dark:border-gray-600 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none "
+            className="flex items-center disabled:cursor-not-allowed disabled:dark:bg-slate-600 disabled:dark:hover:bg-slate-600 disabled:bg-gray-300 bg-gray-100 hover:bg-blue-700 dark:bg-slate-700 dark:hover:bg-blue-700 dark:border-gray-600 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none hover:text-white"
           >
-            <svg
-              className="w-3 h-3 text-gray-900 dark:text-white"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 18"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 1v16M1 9h16"
-              />
-            </svg>
+            <fontAwesome.FaPlus />
           </button>
         </div>
         <button
@@ -115,7 +104,7 @@ const QuantityInput = ({ productId }) => {
           type="submit"
           className="disabled:cursor-not-allowed disabled:bg-blue-800 group relative bg-blue-700 inline-flex items-center justify-center p-0.5  text-sm font-medium text-white rounded-lg group hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800"
         >
-          <span className="absolute -top-2 -right-2 justify-center items-center flex h-5 w-5">
+          <span className="absolute -top-3 -right-3 justify-center items-center flex h-7 w-7">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
             <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
           </span>
