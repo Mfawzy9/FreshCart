@@ -90,7 +90,7 @@ export default function SaleProducts() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 xl:grid-cols-5 justify-center">
                 {onSaleMen?.map((product) => {
                   return (
                     <ProductCard
@@ -115,7 +115,7 @@ export default function SaleProducts() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 xl:grid-cols-5 justify-center">
                 {onSaleWoman?.map((product) => {
                   return (
                     <ProductCard
@@ -140,7 +140,7 @@ export default function SaleProducts() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+              <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 xl:grid-cols-5 justify-center">
                 {onSaleElectronics?.map((product) => {
                   return (
                     <ProductCard

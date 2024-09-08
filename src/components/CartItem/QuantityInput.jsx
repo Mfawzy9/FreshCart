@@ -70,7 +70,7 @@ const QuantityInput = ({ productId }) => {
                 : null
             }
             id="decrement-button"
-            className="flex items-center disabled:cursor-not-allowed disabled:dark:bg-slate-600 disabled:dark:hover:bg-slate-600 disabled:bg-gray-300 bg-gray-100 hover:bg-blue-700 dark:bg-slate-700 dark:hover:bg-blue-700 dark:border-gray-600 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none hover:text-white"
+            className="flex items-center disabled:hover:text-gray-800 disabled:cursor-not-allowed disabled:dark:bg-slate-600 disabled:dark:hover:bg-slate-600 disabled:bg-gray-300 bg-gray-100 hover:bg-blue-700 dark:bg-slate-700 dark:hover:bg-blue-700 dark:border-gray-600 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none hover:text-white"
           >
             <fontAwesome.FaMinus />
           </button>

@@ -23,7 +23,7 @@ export default function Products() {
 
   const { deleteItem, addProduct, currentId, loading } = useAddDeleteCart();
 
-  const cardsPerPage = 12;
+  const cardsPerPage = 15;
   const [showPagination, setShowPagination] = useState(true);
   const [pagintaion, setPagintaion] = useState({
     from: 0,
@@ -108,7 +108,7 @@ export default function Products() {
             />
           </div>
         </form>
-        <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+        <div className="grid sm:grid-cols-2 min-h-full md:grid-cols-3 xl:grid-cols-5 justify-center">
           {allProducts
             ?.slice(pagintaion?.from, pagintaion?.to)
             ?.map((product) => {

@@ -53,7 +53,7 @@ export default function ProductDetails() {
     setLoading(false);
   }
 
-  const { id } = useParams();
+  const { id = "" } = useParams();
 
   const [bigSlider, setBigSlider] = useState(false);
 
@@ -184,7 +184,7 @@ export default function ProductDetails() {
                       <fontAwesome.FaCircle className="text-[9px]" />
                       Category:{" "}
                       <Link
-                        to={`/${productDetails?.category?.name}/Products/${productDetails?.category._id}/category`}
+                        to={`/${productDetails?.category?.name}/Products/${productDetails?.category?._id}/category`}
                         className="flex items-center gap-1 hover:underline"
                       >
                         <span className="text-black dark:text-white font-semibold">
@@ -201,7 +201,7 @@ export default function ProductDetails() {
                       <fontAwesome.FaCircle className="text-[9px]" />
                       Brand:{" "}
                       <Link
-                        to={`/${productDetails?.brand?.name}/Products/${productDetails?.brand._id}/brand`}
+                        to={`/${productDetails?.brand?.name}/Products/${productDetails?.brand?._id}/brand`}
                         className="flex items-center gap-1 hover:underline"
                       >
                         <span className="text-black dark:text-white font-semibold">
@@ -266,7 +266,7 @@ export default function ProductDetails() {
                   ) : (
                     <span className=" font-bold ">
                       {productDetails?.price
-                        .toString()
+                        ?.toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
                       EGP
                     </span>
@@ -378,12 +378,12 @@ export default function ProductDetails() {
                 </p>
               </Tabs.Item>
               <Tabs.Item title="Reviews" icon={fontAwesome.FaComments}>
-                {productDetails?.reviews.length === 0 ? (
+                {productDetails?.reviews?.length === 0 ? (
                   <h1 className="text-center p-3 text-xl">
                     No reviews yet for this product
                   </h1>
                 ) : (
-                  productDetails?.reviews.map((review, index) => (
+                  productDetails?.reviews?.map((review, index) => (
                     <div key={index} className="sm:flex gap-6 p-1 sm:p-5">
                       <img
                         src="https://pagedone.io/asset/uploads/1704364549.png"

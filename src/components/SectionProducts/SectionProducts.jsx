@@ -109,7 +109,7 @@ export default function SectionProducts() {
               : sectionProducts?.[0]?.brand?.name + " products"}
           </title>
         </Helmet>
-        <div className="grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+        <div className="grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 justify-center">
           {sectionProducts?.map((product) => {
             return (
               <ProductCard
