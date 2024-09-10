@@ -77,10 +77,10 @@ export default function Login() {
         <title>Fresh Cart</title>
       </Helmet>
       <>
-        <section className="dark:bg-zinc-900 bg-zinc-50">
-          <div className="container pt-20">
+        <section className="dark:bg-zinc-900 min-h-screen py-24 flex items-center bg-zinc-50">
+          <div className="container">
             <form
-              className="max-w-lg m-auto  min-h-screen flex flex-col pt-32 gap-3 dark:text-white relative"
+              className="max-w-lg m-auto flex flex-col pt-32 gap-3 dark:text-white relative"
               onSubmit={formik.handleSubmit}
             >
               <h2

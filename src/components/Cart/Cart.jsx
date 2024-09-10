@@ -88,7 +88,7 @@ export default function Cart() {
                 })}
               </div>
 
-              <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-max  p-4 sticky top-20">
+              <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-max  p-4 sticky top-24">
                 <h3 className="text-lg font-bold dark:text-slate-300 text-gray-800">
                   Order Summary
                 </h3>

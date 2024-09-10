@@ -40,7 +40,7 @@ export default function Order() {
       <>
         <div className="container py-24 min-h-screen">
           <div className="grid mt-11 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-5 gap-3">
-            <div className="card hover:brightness-90 transition-all group bg-gradient-to-tr from-slate-400 via-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800  shadow-2xl rounded-lg overflow-hidden relative">
+            <div className="card hover:brightness-90 transition-all group bg-gradient-to-tr from-slate-400 via-slate-200 to-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800 dark:to-slate-950  shadow-2xl rounded-lg overflow-hidden relative">
               <div className="px-8 py-10">
                 <fontAwesome.FaInfoCircle className="bg-blue-500 w-10 h-10 rounded-full mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-blue-900 transition-all" />
                 <div className=" font-bold text-xl">Order info</div>
@@ -74,7 +74,7 @@ export default function Order() {
               <div className="h-0.5 group-hover:w-full bg-gradient-to-l  via-blue-500 group-hover:via-blue-500 w-[70%] m-auto rounded transition-all" />
             </div>
 
-            <div className="card hover:brightness-90 transition-all group bg-gradient-to-tr from-slate-400 via-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800  shadow-2xl rounded-lg overflow-hidden relative">
+            <div className="card hover:brightness-90 transition-all group bg-gradient-to-tr from-slate-400 via-slate-200 to-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800 dark:to-slate-950  shadow-2xl rounded-lg overflow-hidden relative">
               <div className="px-8 py-10">
                 <fontAwesome.FaUserCircle className="bg-blue-500 w-10 h-10 rounded-full mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-blue-900 transition-all" />
                 <div className=" font-bold text-xl">Customer</div>
@@ -105,7 +105,7 @@ export default function Order() {
               <div className="h-0.5 group-hover:w-full bg-gradient-to-l  via-blue-500 group-hover:via-blue-500 w-[70%] m-auto rounded transition-all" />
             </div>
 
-            <div className="card hover:brightness-90 sm:col-span-2 lg:col-span-1 transition-all group bg-gradient-to-tr from-slate-400 via-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800  shadow-2xl rounded-lg overflow-hidden relative">
+            <div className="card hover:brightness-90 sm:col-span-2 lg:col-span-1 transition-all group bg-gradient-to-tr from-slate-400 via-slate-200 to-slate-200 dark:bg-gradient-to-tr dark:from-slate-950 dark:via-slate-800 dark:to-slate-950  shadow-2xl rounded-lg overflow-hidden relative">
               <div className="px-8 py-10">
                 <MdOutlineShareLocation className="bg-blue-500 w-10 h-10 rounded-full mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-blue-900 transition-all" />
                 <div className=" font-bold text-xl">Address</div>
@@ -188,13 +188,13 @@ export default function Order() {
                   </div>
                 </div>
 
-                <div className="w-full max-w-sm md:max-w-3xl xl:max-w-sm flex items-start flex-col max-xl:mx-auto sticky top-20">
+                <div className="w-full max-w-sm md:max-w-3xl xl:max-w-sm flex items-start flex-col max-xl:mx-auto sticky top-24">
                   <div className="p-6 dark:bg-gray-800 bg-white rounded-3xl w-full group transition-all duration-500  ">
-                    <h2 className="font-manrope font-bold text-3xl leading-10 pb-6 border-b border-gray-200 ">
+                    <h2 className="font-manrope font-bold text-3xl leading-10 pb-2 border-b border-gray-200 ">
                       Order Summary
                     </h2>
-                    <div className="data py-6 border-b border-gray-200">
-                      <div className="flex items-center justify-between gap-4 mb-5">
+                    <div className="data py-4 border-b border-gray-200">
+                      <div className="flex items-center justify-between gap-4 mb-2">
                         <p className="font-normal text-lg leading-8 dark:text-gray-300 text-gray-700">
                           Tax
                         </p>
@@ -202,7 +202,7 @@ export default function Order() {
                           {currentOrder?.taxPrice}
                         </p>
                       </div>
-                      <div className="flex items-center justify-between gap-4 mb-5">
+                      <div className="flex items-center justify-between gap-4 mb-2">
                         <p className="font-normal text-lg leading-8 dark:text-gray-300 text-gray-700">
                           Shipping
                         </p>

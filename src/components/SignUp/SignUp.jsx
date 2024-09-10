@@ -120,36 +120,19 @@ export default function SignUp() {
         <title>Register</title>
       </Helmet>
       <>
-        <section className="min-h-screen dark:bg-zinc-900 bg-zinc-50">
-          <div className="container pt-12">
-            <div className="container pt-16 h-full">
-              <form
-                className="max-w-lg mx-auto p-4 flex flex-col gap-3"
-                onSubmit={formik.handleSubmit}
-              >
-                <h2 className="text-blue-700 font-bold text-4xl mb-3 animate__shakeX">
-                  Register Now
-                </h2>
+        <section className="min-h-screen flex items-center py-24 dark:bg-zinc-900 bg-zinc-50">
+          <div className="container pt-12 h-full">
+            <form
+              className="max-w-lg mx-auto sm:p-4 flex flex-col gap-3"
+              onSubmit={formik.handleSubmit}
+            >
+              <h2 className="text-blue-700 font-bold text-4xl mb-3 animate__shakeX">
+                Register Now
+              </h2>
 
-                <div className="relative">
-                  <div className="mb-2 block">
-                    <Label
-                      color={
-                        formik.errors.name && formik.touched.name
-                          ? "failure"
-                          : !formik.errors.name && formik.touched.name
-                          ? "success"
-                          : "gray"
-                      }
-                      htmlFor="name"
-                      value="Your Name"
-                    />
-                  </div>
-                  <TextInput
-                    className={
-                      formik.errors.name && formik.touched.name ? "shake" : null
-                    }
-                    id="name"
+              <div className="relative">
+                <div className="mb-2 block">
+                  <Label
                     color={
                       formik.errors.name && formik.touched.name
                         ? "failure"
@@ -157,59 +140,58 @@ export default function SignUp() {
                         ? "success"
                         : "gray"
                     }
-                    value={formik.values.name}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="text"
-                    icon={fontAwesome.FaUser}
-                    placeholder="User Name"
+                    htmlFor="name"
+                    value="Your Name"
                   />
-
-                  {formik.errors.name && formik.touched.name ? (
-                    <>
-                      <fontAwesome.FaExclamationCircle
-                        className={`${
-                          formik.errors.name && formik.touched.name
-                            ? "shake"
-                            : null
-                        } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
-                      />
-                      <div
-                        className="flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-                        role="alert"
-                      >
-                        <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
-                        <p className="font-medium">{formik.errors.name}</p>
-                      </div>
-                    </>
-                  ) : null}
-                  {!formik.errors.name && formik.touched.name ? (
-                    <>
-                      <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
-                    </>
-                  ) : null}
                 </div>
+                <TextInput
+                  className={
+                    formik.errors.name && formik.touched.name ? "shake" : null
+                  }
+                  id="name"
+                  color={
+                    formik.errors.name && formik.touched.name
+                      ? "failure"
+                      : !formik.errors.name && formik.touched.name
+                      ? "success"
+                      : "gray"
+                  }
+                  value={formik.values.name}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="text"
+                  icon={fontAwesome.FaUser}
+                  placeholder="User Name"
+                />
 
-                <div className="relative">
-                  <div className="mb-2 block">
-                    <Label
-                      color={
-                        formik.errors.email && formik.touched.email
-                          ? "failure"
-                          : !formik.errors.email && formik.touched.email
-                          ? "success"
-                          : "gray"
-                      }
-                      htmlFor="email"
-                      value="Your email"
+                {formik.errors.name && formik.touched.name ? (
+                  <>
+                    <fontAwesome.FaExclamationCircle
+                      className={`${
+                        formik.errors.name && formik.touched.name
+                          ? "shake"
+                          : null
+                      } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
                     />
-                  </div>
-                  <TextInput
-                    className={
-                      formik.errors.email && formik.touched.email
-                        ? "shake"
-                        : null
-                    }
+                    <div
+                      className="flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                      role="alert"
+                    >
+                      <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
+                      <p className="font-medium">{formik.errors.name}</p>
+                    </div>
+                  </>
+                ) : null}
+                {!formik.errors.name && formik.touched.name ? (
+                  <>
+                    <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
+                  </>
+                ) : null}
+              </div>
+
+              <div className="relative">
+                <div className="mb-2 block">
+                  <Label
                     color={
                       formik.errors.email && formik.touched.email
                         ? "failure"
@@ -217,59 +199,57 @@ export default function SignUp() {
                         ? "success"
                         : "gray"
                     }
-                    id="email"
-                    value={formik.values.email}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="email"
-                    icon={fontAwesome.FaEnvelope}
-                    placeholder="example@gmail.com"
+                    htmlFor="email"
+                    value="Your email"
                   />
-                  {formik.errors.email && formik.touched.email ? (
-                    <>
-                      <fontAwesome.FaExclamationCircle
-                        className={`${
-                          formik.errors.email && formik.touched.email
-                            ? "shake"
-                            : null
-                        } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
-                      />
-                      <div
-                        className="flex items-center animate__shakeX p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-                        role="alert"
-                      >
-                        <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
-                        <p className="font-medium">{formik.errors.email}</p>
-                      </div>
-                    </>
-                  ) : null}
-                  {!formik.errors.email && formik.touched.email ? (
-                    <>
-                      <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
-                    </>
-                  ) : null}
                 </div>
-
-                <div className="relative">
-                  <div className="mb-2 block">
-                    <Label
-                      color={
-                        formik.errors.phone && formik.touched.phone
-                          ? "failure"
-                          : !formik.errors.phone && formik.touched.phone
-                          ? "success"
-                          : "gray"
-                      }
-                      htmlFor="phone"
-                      value="Your phone"
+                <TextInput
+                  className={
+                    formik.errors.email && formik.touched.email ? "shake" : null
+                  }
+                  color={
+                    formik.errors.email && formik.touched.email
+                      ? "failure"
+                      : !formik.errors.email && formik.touched.email
+                      ? "success"
+                      : "gray"
+                  }
+                  id="email"
+                  value={formik.values.email}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="email"
+                  icon={fontAwesome.FaEnvelope}
+                  placeholder="example@gmail.com"
+                />
+                {formik.errors.email && formik.touched.email ? (
+                  <>
+                    <fontAwesome.FaExclamationCircle
+                      className={`${
+                        formik.errors.email && formik.touched.email
+                          ? "shake"
+                          : null
+                      } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
                     />
-                  </div>
-                  <TextInput
-                    className={
-                      formik.errors.phone && formik.touched.phone
-                        ? "shake"
-                        : null
-                    }
+                    <div
+                      className="flex items-center animate__shakeX p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                      role="alert"
+                    >
+                      <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
+                      <p className="font-medium">{formik.errors.email}</p>
+                    </div>
+                  </>
+                ) : null}
+                {!formik.errors.email && formik.touched.email ? (
+                  <>
+                    <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
+                  </>
+                ) : null}
+              </div>
+
+              <div className="relative">
+                <div className="mb-2 block">
+                  <Label
                     color={
                       formik.errors.phone && formik.touched.phone
                         ? "failure"
@@ -277,72 +257,70 @@ export default function SignUp() {
                         ? "success"
                         : "gray"
                     }
-                    id="phone"
-                    value={formik.values.phone}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="tel"
-                    icon={fontAwesome.FaPhoneAlt}
-                    placeholder="Phone number (123-456-7890)"
+                    htmlFor="phone"
+                    value="Your phone"
                   />
-
-                  {formik.errors.phone && formik.touched.phone ? (
-                    <>
-                      <fontAwesome.FaExclamationCircle
-                        className={`${
-                          formik.errors.phone && formik.touched.phone
-                            ? "shake"
-                            : null
-                        } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
-                      />
-                      <div
-                        className="flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-                        role="alert"
-                      >
-                        <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
-                        <p className="font-medium">{formik.errors.phone}</p>
-                      </div>
-                    </>
-                  ) : null}
-                  {!formik.errors.phone && formik.touched.phone ? (
-                    <>
-                      <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
-                    </>
-                  ) : null}
                 </div>
+                <TextInput
+                  className={
+                    formik.errors.phone && formik.touched.phone ? "shake" : null
+                  }
+                  color={
+                    formik.errors.phone && formik.touched.phone
+                      ? "failure"
+                      : !formik.errors.phone && formik.touched.phone
+                      ? "success"
+                      : "gray"
+                  }
+                  id="phone"
+                  value={formik.values.phone}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="tel"
+                  icon={fontAwesome.FaPhoneAlt}
+                  placeholder="Phone number (123-456-7890)"
+                />
 
-                <div className="relative">
-                  {showPass ? (
-                    <fontAwesome.FaEyeSlash
-                      onClick={() => setShowPass(!showPass)}
-                      className="cursor-pointer text-xl absolute right-11 top-11 z-30"
+                {formik.errors.phone && formik.touched.phone ? (
+                  <>
+                    <fontAwesome.FaExclamationCircle
+                      className={`${
+                        formik.errors.phone && formik.touched.phone
+                          ? "shake"
+                          : null
+                      } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
                     />
-                  ) : (
-                    <fontAwesome.FaEye
-                      onClick={() => setShowPass(!showPass)}
-                      className="cursor-pointer text-xl absolute right-11 top-11 z-30"
-                    />
-                  )}
-                  <div className="mb-2 block">
-                    <Label
-                      htmlFor="password"
-                      color={
-                        formik.errors.password && formik.touched.password
-                          ? "failure"
-                          : !formik.errors.password && formik.touched.password
-                          ? "success"
-                          : "gray"
-                      }
-                      value="Your password"
-                    />
-                  </div>
-                  <TextInput
-                    className={
-                      formik.errors.password && formik.touched.password
-                        ? "shake"
-                        : null
-                    }
-                    autoComplete="true"
+                    <div
+                      className="flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                      role="alert"
+                    >
+                      <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
+                      <p className="font-medium">{formik.errors.phone}</p>
+                    </div>
+                  </>
+                ) : null}
+                {!formik.errors.phone && formik.touched.phone ? (
+                  <>
+                    <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
+                  </>
+                ) : null}
+              </div>
+
+              <div className="relative">
+                {showPass ? (
+                  <fontAwesome.FaEyeSlash
+                    onClick={() => setShowPass(!showPass)}
+                    className="cursor-pointer text-xl absolute right-11 top-11 z-30"
+                  />
+                ) : (
+                  <fontAwesome.FaEye
+                    onClick={() => setShowPass(!showPass)}
+                    className="cursor-pointer text-xl absolute right-11 top-11 z-30"
+                  />
+                )}
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="password"
                     color={
                       formik.errors.password && formik.touched.password
                         ? "failure"
@@ -350,63 +328,62 @@ export default function SignUp() {
                         ? "success"
                         : "gray"
                     }
-                    id="password"
-                    value={formik.values.password}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type={showPass ? "text" : "password"}
-                    icon={fontAwesome.FaLock}
-                    placeholder="Password"
+                    value="Your password"
                   />
-
-                  {formik.errors.password && formik.touched.password ? (
-                    <>
-                      <fontAwesome.FaExclamationCircle
-                        className={`${
-                          formik.errors.password && formik.touched.password
-                            ? "shake"
-                            : null
-                        } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
-                      />
-                      <div
-                        className="flex items-center font-medium p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-                        role="alert"
-                      >
-                        <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
-
-                        {formik.errors.password}
-                      </div>
-                    </>
-                  ) : null}
-                  {!formik.errors.password && formik.touched.password ? (
-                    <>
-                      <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
-                    </>
-                  ) : null}
                 </div>
+                <TextInput
+                  className={
+                    formik.errors.password && formik.touched.password
+                      ? "shake"
+                      : null
+                  }
+                  autoComplete="true"
+                  color={
+                    formik.errors.password && formik.touched.password
+                      ? "failure"
+                      : !formik.errors.password && formik.touched.password
+                      ? "success"
+                      : "gray"
+                  }
+                  id="password"
+                  value={formik.values.password}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type={showPass ? "text" : "password"}
+                  icon={fontAwesome.FaLock}
+                  placeholder="Password"
+                />
 
-                <div className="relative">
-                  <div className="mb-2 block">
-                    <Label
-                      htmlFor="rePassword"
-                      color={
-                        formik.errors.rePassword && formik.touched.rePassword
-                          ? "failure"
-                          : !formik.errors.rePassword &&
-                            formik.touched.rePassword
-                          ? "success"
-                          : "gray"
-                      }
-                      value="Confirm Password"
+                {formik.errors.password && formik.touched.password ? (
+                  <>
+                    <fontAwesome.FaExclamationCircle
+                      className={`${
+                        formik.errors.password && formik.touched.password
+                          ? "shake"
+                          : null
+                      } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
                     />
-                  </div>
-                  <TextInput
-                    className={
-                      formik.errors.rePassword && formik.touched.rePassword
-                        ? "shake"
-                        : null
-                    }
-                    autoComplete="true"
+                    <div
+                      className="flex items-center font-medium p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                      role="alert"
+                    >
+                      <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
+
+                      {formik.errors.password}
+                    </div>
+                  </>
+                ) : null}
+                {!formik.errors.password && formik.touched.password ? (
+                  <>
+                    <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
+                  </>
+                ) : null}
+              </div>
+
+              <div className="relative">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="rePassword"
                     color={
                       formik.errors.rePassword && formik.touched.rePassword
                         ? "failure"
@@ -414,74 +391,88 @@ export default function SignUp() {
                         ? "success"
                         : "gray"
                     }
-                    id="rePassword"
-                    value={formik.values.rePassword}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type={showPass ? "text" : "password"}
-                    icon={fontAwesome.FaLock}
-                    placeholder="Confirm Password"
+                    value="Confirm Password"
                   />
-
-                  {formik.errors.rePassword && formik.touched.rePassword ? (
-                    <>
-                      <fontAwesome.FaExclamationCircle
-                        className={`${
-                          formik.errors.rePassword && formik.touched.rePassword
-                            ? "shake"
-                            : null
-                        } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
-                      />
-                      <div
-                        className="flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-                        role="alert"
-                      >
-                        <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
-                        <p className="font-medium">
-                          {formik.errors.rePassword}
-                        </p>
-                      </div>
-                    </>
-                  ) : null}
-                  {!formik.errors.rePassword && formik.touched.rePassword ? (
-                    <>
-                      <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
-                    </>
-                  ) : null}
                 </div>
+                <TextInput
+                  className={
+                    formik.errors.rePassword && formik.touched.rePassword
+                      ? "shake"
+                      : null
+                  }
+                  autoComplete="true"
+                  color={
+                    formik.errors.rePassword && formik.touched.rePassword
+                      ? "failure"
+                      : !formik.errors.rePassword && formik.touched.rePassword
+                      ? "success"
+                      : "gray"
+                  }
+                  id="rePassword"
+                  value={formik.values.rePassword}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type={showPass ? "text" : "password"}
+                  icon={fontAwesome.FaLock}
+                  placeholder="Confirm Password"
+                />
 
-                {resError && (
+                {formik.errors.rePassword && formik.touched.rePassword ? (
                   <>
+                    <fontAwesome.FaExclamationCircle
+                      className={`${
+                        formik.errors.rePassword && formik.touched.rePassword
+                          ? "shake"
+                          : null
+                      } absolute top-11 right-4 text-red-800  dark:text-red-400 text-xl`}
+                    />
                     <div
-                      className="shake flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                      className="flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
                       role="alert"
                     >
-                      <fontAwesome.FaExclamationCircle className="text-xl mr-2 fa-beat" />
-                      <p className="font-medium">{resError}</p>
+                      <fontAwesome.FaExclamationCircle className="text-xl mr-2" />
+                      <p className="font-medium">{formik.errors.rePassword}</p>
                     </div>
                   </>
-                )}
+                ) : null}
+                {!formik.errors.rePassword && formik.touched.rePassword ? (
+                  <>
+                    <fontAwesome.FaCheck className="absolute top-11 right-4 text-green-800  dark:text-green-400 text-xl" />
+                  </>
+                ) : null}
+              </div>
 
-                <div className="flex items-center flex-wrap">
-                  <button
-                    type="submit"
-                    disabled={!(formik.isValid && formik.dirty)}
-                    className={FormStyle.submitStyle}
+              {resError && (
+                <>
+                  <div
+                    className="shake flex items-center p-4 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                    role="alert"
                   >
-                    Register
-                  </button>
-                  <p className="pl-5 mt-3">
-                    Already a member ?{" "}
-                    <Link
-                      to={"/login"}
-                      className="font-bold text-blue-700 hover:underline"
-                    >
-                      Login
-                    </Link>
-                  </p>
-                </div>
-              </form>
-            </div>
+                    <fontAwesome.FaExclamationCircle className="text-xl mr-2 fa-beat" />
+                    <p className="font-medium">{resError}</p>
+                  </div>
+                </>
+              )}
+
+              <div className="flex items-center flex-wrap">
+                <button
+                  type="submit"
+                  disabled={!(formik.isValid && formik.dirty)}
+                  className={FormStyle.submitStyle}
+                >
+                  Register
+                </button>
+                <p className="pl-5 mt-3">
+                  Already a member ?{" "}
+                  <Link
+                    to={"/login"}
+                    className="font-bold text-blue-700 hover:underline"
+                  >
+                    Login
+                  </Link>
+                </p>
+              </div>
+            </form>
           </div>
         </section>
       </>
