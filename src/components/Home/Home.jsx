@@ -171,14 +171,14 @@ export default function Home() {
       {/* ele slider */}
       <ElectronicSlider />
 
-      {/* newsletter */}
-      <NewsLetter />
+      {/* why shop with us */}
+      <WhyUs />
 
       {/* brands slider */}
       <BrandsSlider />
 
-      {/* why shop with us */}
-      <WhyUs />
+      {/* newsletter */}
+      <NewsLetter />
     </>
   );
 }

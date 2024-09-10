@@ -338,9 +338,9 @@ const authRoutes = createBrowserRouter([
       {
         path: "/order/:orderId",
         element: (
-          <PagesAnimation>
+          <PagesAni2>
             <Order />
-          </PagesAnimation>
+          </PagesAni2>
         ),
       },
       {

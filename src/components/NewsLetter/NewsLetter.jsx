@@ -3,7 +3,7 @@ import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 
 export default function NewsLetter() {
   return (
-    <div id="newsLetter" className="news-letter mt-20 4xl:container p-6">
+    <div id="newsLetter" className="news-letter lg:p-10 py-6 my-12">
       <div className="grid lg:grid-cols-2 items-center gap-16 max-w-7xl mx-auto min-h-[350px]">
         <div>
           <h3 className="text-white text-4xl font-bold">
@@ -17,7 +17,7 @@ export default function NewsLetter() {
           <div className="flex gap-2 flex-wrap">
             <div className="relative sm:w-96">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                <fontAwesome.FaEnvelope />
+                <fontAwesome.FaEnvelope className="text-white" />
               </div>
               <input
                 type="text"

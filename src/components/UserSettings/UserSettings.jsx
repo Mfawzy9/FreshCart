@@ -180,7 +180,7 @@ export default function UserSettings() {
                               : userAddresses.map((address, idx) => (
                                   <span
                                     key={idx}
-                                    className="bg-blue-100 text-blue-800 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+                                    className="bg-orange-100 text-orange-800 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-orange-400 border border-orange-400"
                                   >
                                     {address.name}
                                   </span>
@@ -193,6 +193,7 @@ export default function UserSettings() {
                 </div>
               </motion.div>
             </Tabs.Item>
+
             <Tabs.Item title="Addresses" icon={FaMapLocationDot}>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -211,9 +212,9 @@ export default function UserSettings() {
                     {userAddresses.map((address, idx) => (
                       <div
                         key={idx}
-                        className="flex flex-col gap-4 items-start justify-center p-8 bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e dark:bg-gray-800 dark:border-gray-700"
+                        className="flex flex-wrap gap-4 items-start justify-around px-2 sm:px-0 py-8 bg-white border-b border-gray-300 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e dark:bg-gray-800 dark:border-gray-600"
                       >
-                        <ul className="w-full flex flex-wrap gap-y-3 gap-x-6 text-gray-500 dark:text-gray-400">
+                        <ul className=" flex flex-col flex-wrap gap-y-3 gap-x-6 text-gray-500 dark:text-gray-400">
                           <li className="dark:text-gray-400 text-gray-600">
                             name :{" "}
                             <span className="text-black dark:text-white font-semibold">
@@ -242,7 +243,7 @@ export default function UserSettings() {
                         <button
                           disabled={currentId === address._id && isLoading}
                           onClick={() => deleteUserAddress(address._id)}
-                          className="disabled:cursor-not-allowed bg-red-950 flex items-center text-red-200 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                          className="disabled:cursor-not-allowed bg-red-950 self-center flex items-center text-red-200 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
                         >
                           {currentId === address._id && isLoading ? (
                             <fontAwesome.FaSpinner className="animate-spin m-2" />
