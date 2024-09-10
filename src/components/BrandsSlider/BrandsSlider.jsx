@@ -44,6 +44,10 @@ export default function BrandsSlider() {
             slidesPerView: 8,
             spaceBetween: 0,
           },
+          2000: {
+            slidesPerView: 10,
+            spaceBetween: 0,
+          },
         }}
         loop={true}
         allowTouchMove={false}
@@ -53,7 +57,6 @@ export default function BrandsSlider() {
         }}
         navigation={false}
         modules={[Autoplay]}
-        className="3xl:container"
       >
         {duplicatedBrands?.map((brand, idx) => (
           <SwiperSlide className=" " key={idx}>
