@@ -5,7 +5,7 @@ export default function NewsLetter() {
   return (
     <div
       id="newsLetter"
-      className="news-letter lg:p-10 py-6 my-12 4xl:container"
+      className="news-letter px-2 lg:p-10 py-6 my-12 4xl:container"
     >
       <div className="grid lg:grid-cols-2 items-center gap-16 max-w-7xl mx-auto min-h-[350px]">
         <div>
