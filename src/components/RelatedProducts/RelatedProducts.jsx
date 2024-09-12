@@ -19,12 +19,16 @@ export default function RelatedProducts({ setModalPlace, setOpenModal }) {
   const { isLoading, data: allProducts } = useAllProducts(id);
 
   const [relatedProducts, setRelatedProducts] = useState(
-    allProducts?.filter((product) => product.category.name === category)
+    allProducts?.filter(
+      (product) => product.category.name === category && product.id !== id
+    )
   );
 
   useEffect(() => {
     setRelatedProducts(
-      allProducts?.filter((product) => product.category.name === category)
+      allProducts?.filter(
+        (product) => product.category.name === category && product.id !== id
+      )
     );
   }, [allProducts]);
 

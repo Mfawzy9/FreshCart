@@ -18,7 +18,7 @@ export default function Layout() {
       <NavBar />
 
       <div className="min-h-screen">
-        <div className="fixed inset-0 bg-blue-700/45 dark:bg-blue-700/25  -z-10 skew-y-12 rotate-45 translate-y-1/2 translate-x-1/2"></div>
+        <div className="fixed inset-0 w-full bg-blue-700/45 dark:bg-blue-700/25 -z-10 skew-y-12 rotate-45 translate-y-1/2 translate-x-1/2"></div>
         <AnimatePresence>
           {scroll > 300 && (
             <motion.div
