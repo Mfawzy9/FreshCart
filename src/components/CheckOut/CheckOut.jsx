@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
-
 import { useFormik } from "formik";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import MainLoading from "../MainLoading/MainLoading.jsx";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -15,8 +14,21 @@ import { UserContext } from "../../Context/UserContext/UserContext.jsx";
 
 export default function CheckOut() {
   const { cartId } = useParams();
-  const { clearCart } = useContext(CartContext);
+  const { clearCart, productsCount, cart, getCart } = useContext(CartContext);
   const { userAddresses } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  // check if cart is empty (protect checkout page)
+  useEffect(() => {
+    if (productsCount === 0 || productsCount === null) {
+      if (!cart) {
+        getCart();
+      } else {
+        navigate("/cart");
+      }
+    }
+  }, [productsCount, cart]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [cashSuccess, setCashSuccess] = useState(false);
