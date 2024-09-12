@@ -249,7 +249,7 @@ export default function ProductDetails() {
                 <div className="my-4 flex items-center gap-3 flex-wrap">
                   {productDetails?.priceAfterDiscount > 0 ? (
                     <>
-                      <span className="font-bold text-xl ">
+                      <span className="font-bold text-2xl">
                         {productDetails?.priceAfterDiscount
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
@@ -264,7 +264,7 @@ export default function ProductDetails() {
                       </span>
                     </>
                   ) : (
-                    <span className=" font-bold ">
+                    <span className=" font-bold text-2xl">
                       {productDetails?.price
                         ?.toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}

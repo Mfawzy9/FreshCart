@@ -16,7 +16,7 @@ import useAllProducts from "../../Hooks/AllProducts/useAllProducts";
 export default function RelatedProducts({ setModalPlace, setOpenModal }) {
   const { id, category } = useParams();
 
-  const { isLoading, data: allProducts } = useAllProducts(id);
+  const { isLoading, data: allProducts } = useAllProducts();
 
   const [relatedProducts, setRelatedProducts] = useState(
     allProducts?.filter(
@@ -30,7 +30,7 @@ export default function RelatedProducts({ setModalPlace, setOpenModal }) {
         (product) => product.category.name === category && product.id !== id
       )
     );
-  }, [allProducts]);
+  }, [allProducts, id]);
 
   const { addProduct, deleteItem, currentId, loading } = useAddDeleteCart();
 
