@@ -1,30 +1,12 @@
 import React from "react";
-
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import MainLoading from "../MainLoading/MainLoading";
 import Title from "../Title/Title";
 import { Helmet } from "react-helmet";
+import useAllCategories from "../../Hooks/AllCategories/useAllCategories";
 
 export default function Categories() {
-  async function getCategories() {
-    try {
-      const { data } = await axios.get(
-        `https://ecommerce.routemisr.com/api/v1/categories`
-      );
-      return data;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  const { data: categories, isLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
-    staleTime: 1000 * 60 * 60, // 1 hour
-    select: (data) => data.data,
-  });
+  const { data: categories, isLoading } = useAllCategories();
 
   if (isLoading) {
     return <MainLoading />;
