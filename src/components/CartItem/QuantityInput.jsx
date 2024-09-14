@@ -54,7 +54,7 @@ const QuantityInput = ({ productId }) => {
           e.preventDefault();
           updateCountEvent();
         }}
-        className="flex items-center flex-wrap gap-3"
+        className="flex items-center justify-center flex-wrap gap-3"
       >
         <div className="flex items-center max-w-[8rem]">
           <button

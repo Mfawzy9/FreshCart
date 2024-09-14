@@ -39,7 +39,7 @@ export default function RelatedProducts({ setModalPlace, setOpenModal }) {
   }
 
   return (
-    <>
+    <div className="mt-32">
       <h2 className="text-4xl relative mx-auto w-fit font-extrabold dark:text-slate-100 text-gray-800 my-8 ">
         Related Products
         <span className="absolute bottom-0 left-0 right-0 h-1/3 bg-blue-700/55 -z-30"></span>
@@ -97,6 +97,6 @@ export default function RelatedProducts({ setModalPlace, setOpenModal }) {
           ))}
         </Swiper>
       </div>
-    </>
+    </div>
   );
 }

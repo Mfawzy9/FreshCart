@@ -24,6 +24,7 @@ import SaleBadge from "../SaleBadge/SaleBadge";
 import { Helmet } from "react-helmet";
 import { UserContext } from "../../Context/UserContext/UserContext";
 import AccessModal from "../AccessModal/AccessModal";
+import { motion } from "framer-motion";
 
 export default function ProductDetails() {
   useEffect(() => {
@@ -122,7 +123,7 @@ export default function ProductDetails() {
               </Swiper>
             </div>
           )}
-          <section className="py-10 max-w-screen-xl mx-auto my-6 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] p-0 sm:p-3 rounded-md">
+          <section className="py-10 max-w-screen-xl mx-auto my-6  p-0 sm:p-3 rounded-md">
             <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-3 ">
               {/* Product Images */}
               <div className="w-auto details-slider md:col-span-2 lg:col-span-2">
@@ -279,9 +280,13 @@ export default function ProductDetails() {
                         (_productObj) =>
                           _productObj.product?.id === productDetails?.id
                       ) ? (
-                        <div className="flex flex-wrap mt-1 items-center gap-2 px-1">
-                          <QuantityInput productId={productDetails?.id} />
-                          <div className="btns flex justify-between items-center">
+                        <div className="flex flex-col w-full mt-1 items-center gap-2 px-1">
+                          <div className="self-start flex flex-wrap items-center gap-3">
+                            <span className="font-bold">QTY :</span>
+                            <QuantityInput productId={productDetails?.id} />
+                          </div>
+
+                          <div className="btns flex w-full mt-3 justify-between items-center">
                             <button
                               disabled={
                                 currentId === productDetails?.id && loading
@@ -364,7 +369,7 @@ export default function ProductDetails() {
 
             <Tabs
               aria-label="Full width tabs"
-              className="my-2 bg-white/70 dark:bg-black/70"
+              className="my-2 bg-white/70 dark:bg-black/70 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded"
               variant="fullWidth"
             >
               <Tabs.Item
@@ -373,53 +378,64 @@ export default function ProductDetails() {
                 title="Description"
                 icon={fontAwesome.FaBookOpen}
               >
-                <p className="text-slate-800 dark:text-slate-300 p-3 leading-loose mb-6">
+                <motion.p
+                  initial={{ opacity: 0, y: -50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-slate-800 dark:text-slate-300 p-3 leading-loose mb-6"
+                >
                   {productDetails?.description}
-                </p>
+                </motion.p>
               </Tabs.Item>
               <Tabs.Item title="Reviews" icon={fontAwesome.FaComments}>
-                {productDetails?.reviews?.length === 0 ? (
-                  <h1 className="text-center p-3 text-xl">
-                    No reviews yet for this product
-                  </h1>
-                ) : (
-                  productDetails?.reviews?.map((review, index) => (
-                    <div key={index} className="sm:flex gap-6 p-1 sm:p-5">
-                      <img
-                        src="https://pagedone.io/asset/uploads/1704364549.png"
-                        alt="Robert image"
-                        className="w-32 h-32 rounded-full"
-                      />
-                      <div className="text">
-                        <p className="font-medium text-lg leading-8 dark:text-gray-300 text-gray-900 mb-2">
-                          Robert Karmazov
-                        </p>
-
-                        <p className="font-normal text-base leading-7 dark:text-gray-400 text-gray-600 mb-4 lg:pr-8">
-                          One of the standout features of Pagedone is its
-                          intuitive and user-friendly interface. Navigating
-                          through the system feels natural, and the layout makes
-                          it easy to locate and utilize various design elements.
-                          This is particularly beneficial for designers looking
-                          to streamline their workflow.
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <div className="cursor-pointers flex items-center gap-2">
-                            <a
-                              href="javascript:;"
-                              className="font-semibold text-lg cursor-pointer leading-8 text-blue-600 whitespace-nowrap"
-                            >
-                              View &amp; Reply
-                            </a>
-                          </div>
-                          <p className="lg:hidden font-medium text-sm leading-7 text-gray-400 lg:text-center whitespace-nowrap">
-                            Nov 01, 2023
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {productDetails?.reviews?.length === 0 ? (
+                    <h1 className="text-center p-3 text-xl">
+                      No reviews yet for this product
+                    </h1>
+                  ) : (
+                    productDetails?.reviews?.map((review, index) => (
+                      <div key={index} className="sm:flex gap-6 p-1 sm:p-5">
+                        <img
+                          src="https://pagedone.io/asset/uploads/1704364549.png"
+                          alt="Robert image"
+                          className="w-32 h-32 rounded-full"
+                        />
+                        <div className="text">
+                          <p className="font-medium text-lg leading-8 dark:text-gray-300 text-gray-900 mb-2">
+                            Robert Karmazov
                           </p>
+
+                          <p className="font-normal text-base leading-7 dark:text-gray-400 text-gray-600 mb-4 lg:pr-8">
+                            One of the standout features of Pagedone is its
+                            intuitive and user-friendly interface. Navigating
+                            through the system feels natural, and the layout
+                            makes it easy to locate and utilize various design
+                            elements. This is particularly beneficial for
+                            designers looking to streamline their workflow.
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <div className="cursor-pointers flex items-center gap-2">
+                              <a
+                                href="javascript:;"
+                                className="font-semibold text-lg cursor-pointer leading-8 text-blue-600 whitespace-nowrap"
+                              >
+                                View &amp; Reply
+                              </a>
+                            </div>
+                            <p className="lg:hidden font-medium text-sm leading-7 text-gray-400 lg:text-center whitespace-nowrap">
+                              Nov 01, 2023
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))
-                )}
+                    ))
+                  )}
+                </motion.div>
               </Tabs.Item>
             </Tabs>
           </section>

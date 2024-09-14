@@ -186,7 +186,7 @@ export default function CheckOut() {
                     id="details"
                     className={`${
                       formik.errors.details && formik.touched.details
-                        ? " focus:ring-red-800 focus:border-red-800 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-800 dark:focus:border-red-800 rounded-lg dark:border-red-800 border-red-800 border-2"
+                        ? " focus:ring-red-800 focus:border-red-800 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-800 dark:focus:border-red-800 rounded-lg dark:border-red-800 border-red-800 border-2 text-black"
                         : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     } `}
                     placeholder="Details"
@@ -221,7 +221,7 @@ export default function CheckOut() {
                     id="phone"
                     className={`${
                       formik.errors.phone && formik.touched.phone
-                        ? " focus:ring-red-800 focus:border-red-800 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-800 dark:focus:border-red-800 rounded-lg dark:border-red-800 border-red-800 border-2"
+                        ? " focus:ring-red-800 focus:border-red-800 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-800 dark:focus:border-red-800 rounded-lg dark:border-red-800 border-red-800 border-2 text-black"
                         : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     } `}
                     placeholder="Phone number"
@@ -256,7 +256,7 @@ export default function CheckOut() {
                     id="city"
                     className={`${
                       formik.errors.city && formik.touched.city
-                        ? " focus:ring-red-800 focus:border-red-800 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-800 dark:focus:border-red-800 rounded-lg dark:border-red-800 border-red-800 border-2"
+                        ? " focus:ring-red-800 focus:border-red-800 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-800 dark:focus:border-red-800 rounded-lg dark:border-red-800 border-red-800 border-2 text-black"
                         : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     } `}
                     placeholder="City location"

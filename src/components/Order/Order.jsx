@@ -173,12 +173,15 @@ export default function Order() {
                                 Quantity: {product?.count}
                               </p>
                             </div>
-                            <div className="flex items-center justify-between gap-8">
+                            <div className="flex items-center gap-4 lg:gap-10">
                               <RatingStars
                                 rating={product?.product?.ratingsAverage}
                               />
-                              <h6 className="font-medium text-xl leading-8 text-blue-600">
-                                {product?.price} LE
+                              <h6 className="font-medium text-xl leading-8 dark:text-blue-300 text-blue-600">
+                                {product?.price
+                                  .toString()
+                                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                                LE
                               </h6>
                             </div>
                           </div>
