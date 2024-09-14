@@ -153,39 +153,41 @@ export default function Order() {
                   <div className="grid grid-cols-1 gap-6">
                     {currentOrder?.cartItems?.map((product) => {
                       return (
-                        <div
+                        <Link
+                          to={`/productDetails/${product?.product?.id}/${product?.product?.category?.name}`}
                           key={product?._id}
-                          className="rounded-3xl p-6 dark:bg-gray-800 bg-white flex flex-col md:flex-row md:items-center gap-5 transition-all duration-500"
                         >
-                          <div className="img-box ">
-                            <img
-                              src={product?.product?.imageCover}
-                              alt={product?.product?.title}
-                              className="w-full md:max-w-[122px] rounded-lg"
-                            />
-                          </div>
-                          <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3 md:gap-8">
-                            <div>
-                              <h2 className="font-medium text-xl leading-8 mb-3">
-                                {product?.product?.title}
-                              </h2>
-                              <p className="font-normal text-lg leading-8 text-gray-500 ">
-                                Quantity: {product?.count}
-                              </p>
-                            </div>
-                            <div className="flex items-center gap-4 lg:gap-10">
-                              <RatingStars
-                                rating={product?.product?.ratingsAverage}
+                          <div className="rounded-3xl hover:scale-105 hover:shadow-2xl dark:hover:shadow-inner dark:hover:shadow-blue-600 p-6 dark:bg-gray-800 bg-white flex flex-col md:flex-row md:items-center gap-5 transition-all duration-500">
+                            <div className="img-box ">
+                              <img
+                                src={product?.product?.imageCover}
+                                alt={product?.product?.title}
+                                className="w-full md:max-w-[122px] rounded-lg"
                               />
-                              <h6 className="font-medium text-xl leading-8 dark:text-blue-300 text-blue-600">
-                                {product?.price
-                                  .toString()
-                                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                                LE
-                              </h6>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-3 md:gap-8">
+                              <div>
+                                <h2 className="font-medium text-xl leading-8 mb-3">
+                                  {product?.product?.title}
+                                </h2>
+                                <p className="font-normal text-lg leading-8 text-gray-500 ">
+                                  Quantity: {product?.count}
+                                </p>
+                              </div>
+                              <div className="flex items-center gap-4 lg:gap-10">
+                                <RatingStars
+                                  rating={product?.product?.ratingsAverage}
+                                />
+                                <h6 className="font-medium text-xl leading-8 dark:text-blue-300 text-blue-600">
+                                  {product?.price
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                                  LE
+                                </h6>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       );
                     })}
                   </div>

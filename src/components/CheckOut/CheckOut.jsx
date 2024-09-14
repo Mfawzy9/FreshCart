@@ -21,11 +21,15 @@ export default function CheckOut() {
 
   // check if cart is empty (protect checkout page)
   useEffect(() => {
-    if (productsCount === 0 || productsCount === null) {
-      if (!cart) {
-        getCart();
-      } else {
-        navigate("/cart");
+    if (cashSuccess) {
+      return;
+    } else {
+      if (productsCount === 0 || productsCount === null) {
+        if (!cart) {
+          getCart();
+        } else {
+          navigate("/cart");
+        }
       }
     }
   }, [productsCount, cart]);
