@@ -80,6 +80,11 @@ export default function Products() {
   function handleSelectClick(event) {
     setCurrentPage(1);
     setPagintaion({ from: 0, to: cardsPerPage });
+    if (searchInput.current.value.length > 0) {
+      searchInput.current.value = "";
+      setAllProducts(data);
+      setShowPagination(true);
+    }
     if (event.target.id === "categories") {
       if (brandsSelect.current.value !== "allBrands") {
         brandsSelect.current.value = "allBrands";
@@ -102,6 +107,7 @@ export default function Products() {
 
   const categoriesSelect = useRef(null);
   const brandsSelect = useRef(null);
+  const searchInput = useRef(null);
   const [categoriesArr, setCategoriesArr] = useState([]);
   const [brandsArr, setBrandsArr] = useState([]);
 
@@ -128,7 +134,7 @@ export default function Products() {
 
       <div className="container py-24 min-h-screen">
         <Title title={"All Products"} my={"mt-8"} mx={"mx-auto"} />
-        <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap justify-between gap-5 my-8">
+        <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap md:px-2 justify-between gap-5 my-8">
           <div>
             <div className="mb-2 block">
               <Label htmlFor="categories" value="Sort By Category" />
@@ -154,7 +160,7 @@ export default function Products() {
             onSubmit={(e) => {
               e.preventDefault();
             }}
-            className="flex self-end items-center w-full md:max-w-sm order-last md:order-none"
+            className="flex self-end items-center w-full md:max-w-xs lg:max-w-md order-last md:order-none"
           >
             <label htmlFor="simple-search" className="sr-only">
               Search
@@ -164,6 +170,7 @@ export default function Products() {
                 <fontAwesome.FaSearch />
               </div>
               <input
+                ref={searchInput}
                 onFocus={() => {
                   setShowPagination(false);
                   if (

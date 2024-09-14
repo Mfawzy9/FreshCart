@@ -72,6 +72,7 @@ export default function Home() {
                 }}
               >
                 <Link
+                  onClick={() => scrollTo(0, 0)}
                   to={`/Men's Fashion/Products/6439d5b90049ad0b52b90048/category`}
                 >
                   <div className="card group/card relative">
@@ -107,6 +108,7 @@ export default function Home() {
                 }}
               >
                 <Link
+                  onClick={() => scrollTo(0, 0)}
                   to={`/Women's Fashion/Products/6439d58a0049ad0b52b9003f/category`}
                 >
                   <div className="card group/card relative">
