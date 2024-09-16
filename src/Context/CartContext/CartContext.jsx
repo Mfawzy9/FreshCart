@@ -60,9 +60,7 @@ export default function CartContextProvider({ children }) {
       )
       .then((response) => {
         getCart();
-
         if (response?.data.status == "success") {
-          // setCart(response.data)
           setProductsCount(response.data.numOfCartItems);
           toast.success(response.data.message, successToast);
           return response;

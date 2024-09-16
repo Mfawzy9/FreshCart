@@ -20,6 +20,10 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.dark {
+  scrollbar-color: #3c424f #0a0d0f;
+}
+
 .row {
   @apply flex flex-wrap py-8
 }

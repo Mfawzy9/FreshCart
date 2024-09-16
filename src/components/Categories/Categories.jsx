@@ -17,7 +17,7 @@ export default function Categories() {
       <Helmet>
         <title>Categories</title>
       </Helmet>
-      <div className="container py-24 min-h-screen">
+      <div className="container py-24 min-h-screen flex flex-col justify-center">
         <Title title={"Shop By Category"} my={"mt-8"} mx={"mx-auto"} />
         <div className="grid p-5 sm:p-0 sm:py-10 grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4  xl:px-28">
           <div className="grid gap-4">

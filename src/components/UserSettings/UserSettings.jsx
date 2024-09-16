@@ -12,6 +12,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import Title from "../Title/Title";
 
 export default function UserSettings() {
   const navigate = useNavigate();
@@ -137,11 +138,9 @@ export default function UserSettings() {
       <Helmet>
         <title>User Settings</title>
       </Helmet>
-      <div className="container py-24 min-h-screen">
+      <div className="container py-24 min-h-screen flex flex-col justify-center">
         <section className="py-10">
-          <h2 className="text-3xl font-extrabold mb-5 dark:text-slate-300 text-gray-800">
-            Account Details
-          </h2>
+          <Title title={"Account Details"} my={"my-8"} />
 
           <Tabs aria-label="Tabs with icons" variant="underline">
             <Tabs.Item active title="Details" icon={HiUserCircle}>

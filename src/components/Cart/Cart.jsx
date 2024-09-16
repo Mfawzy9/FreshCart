@@ -26,28 +26,26 @@ export default function Cart() {
         <Helmet>
           <title>Cart</title>
         </Helmet>
-        <div className="container py-24 min-h-screen">
-          <div className="container py-24 min-h-screen">
-            <div className=" justify-center flex items-center">
-              <div className="flex flex-col items-center justify-center py-12">
-                <FaShopify className="text-[10rem]" />
-                <p className="text-2xl font-semibold my-4">
-                  Your shopping cart is empty!
-                </p>
-                <p className="text-gray-600 dark:text-gray-400 text-center my-2">
-                  Browse our categories and discover our best deals!
-                </p>
-                <Link
-                  to={"/"}
-                  className="group mt-2 relative overflow-hidden bg-blue-600 focus:ring-4 focus:ring-blue-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center"
-                >
-                  <span className="z-40 flex items-center">
-                    <fontAwesome.FaCartArrowDown className="me-2 text-xl" />
-                    {"Let's go shopping"}
-                  </span>
-                  <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
-                </Link>
-              </div>
+        <div className="container py-24 min-h-screen flex items-center justify-center">
+          <div className=" justify-center flex items-center">
+            <div className="flex flex-col items-center justify-center py-12">
+              <FaShopify className="text-[10rem]" />
+              <p className="text-2xl font-semibold my-4 text-center">
+                Your shopping cart is empty!
+              </p>
+              <p className="text-gray-600 dark:text-gray-400 text-center my-2">
+                Browse our categories and discover our best deals!
+              </p>
+              <Link
+                to={"/"}
+                className="group mt-2 relative overflow-hidden bg-blue-600 focus:ring-4 focus:ring-blue-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center"
+              >
+                <span className="z-40 flex items-center">
+                  <fontAwesome.FaCartArrowDown className="me-2 text-xl" />
+                  {"Let's go shopping"}
+                </span>
+                <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+              </Link>
             </div>
           </div>
         </div>

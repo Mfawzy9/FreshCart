@@ -17,7 +17,7 @@ export default function Brands() {
       <Helmet>
         <title>Brands</title>
       </Helmet>
-      <div className="container py-24 min-h-screen">
+      <div className="container py-24 min-h-screen flex flex-col justify-center">
         <Title title={"Shop By Brand"} my={"mt-8"} mx={"mx-auto"} />
         <section className="">
           <div className=" px-8 md:px-12 mx-auto py-12 lg:py-20 space-y-24 flex flex-col justify-center">

@@ -132,7 +132,7 @@ export default function Products() {
         <AccessModal setOpenModal={setOpenModal} place={ModalPlace} />
       )}
 
-      <div className="container py-24 min-h-screen">
+      <div className="container py-24 min-h-screen flex flex-col justify-center">
         <Title title={"All Products"} my={"mt-8"} mx={"mx-auto"} />
         <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap md:px-2 justify-between gap-5 my-8">
           <div>

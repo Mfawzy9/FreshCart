@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 import Logo from "../../assets/logo.png";
-import { Dropdown, Navbar, Tooltip } from "flowbite-react";
+import { Button, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext/UserContext.jsx";
 import { VscSignOut, VscSignIn } from "react-icons/vsc";
@@ -9,6 +9,7 @@ import { CartContext } from "../../Context/CartContext/CartContext.jsx";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { WishListContext } from "../../Context/WishListContext/WishListContext.jsx";
 import { OrdersContext } from "../../Context/OrdersContext/OrdersContext.jsx";
+import { motion } from "framer-motion";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -40,13 +41,73 @@ export default function NavBar() {
     setUserName(null);
     setUserEmail(null);
     navigate("/");
+    setOpenModal(false);
   }
+
+  const [navToggler, setNavToggler] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
+  function handleNavLink() {
+    window.scrollTo(0, 0);
+    if (window.innerWidth > 767) {
+      return;
+    } else {
+      setNavToggler(false);
+    }
+  }
+
+  useEffect(() => {
+    if (window.innerWidth > 767) {
+      setNavToggler(true);
+    }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 767) {
+        setNavToggler(true);
+      } else {
+        setNavToggler(false);
+      }
+    });
+  });
 
   return (
     <>
+      {openModal && (
+        <div className="fixed z-50 flex items-center inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 0.3,
+            }}
+            className="relative mx-auto shadow-xl rounded-md bg-gradient-to-tl from-gray-800 via-slate-800 to-blue-900 bg-white  dark:bg-gray-700 sm:w-96 max-w-md"
+          >
+            <div className="flex justify-end p-2">
+              <fontAwesome.FaTimes
+                onClick={() => setOpenModal(false)}
+                className="text-xl cursor-pointer text-white"
+              />
+            </div>
+            <div className="p-6 pt-0 text-center">
+              <fontAwesome.FaExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-200 animate-pulse" />
+              <h3 className="mb-5 text-lg font-normal text-white">
+                Are you sure you want to logout?
+              </h3>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button color="failure" onClick={logOut}>
+                  {"Yes, I'm sure"}
+                </Button>
+                <Button color="gray" onClick={() => setOpenModal(false)}>
+                  No, cancel
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
       <Navbar
         rounded
-        className="fixed p-5 top-0 left-0 right-0 z-40 px-0 sm:px-2 shadow-lg shadow-blue-700/30"
+        className="fixed py-5 top-0 left-0 right-0 z-40 px-0  shadow-lg shadow-blue-700/30 main-nav"
       >
         <Link to="/" className="flex items-center mr-1 sm:mr-3">
           <img src={Logo} className="mr-2 h-6 sm:h-9" alt="App Logo" />
@@ -96,7 +157,7 @@ export default function NavBar() {
                 <div className="flex flex-col px-3">
                   <span
                     className="cursor-pointer acc-link p-2 hover:text-white transition-all duration-300 flex items-center gap-1 hover:bg-red-800 hover:[box-shadow:0_0_10px_#9b1c1c]"
-                    onClick={logOut}
+                    onClick={() => setOpenModal(true)}
                   >
                     <VscSignOut className="text-xl" />
                     Log Out
@@ -139,34 +200,42 @@ export default function NavBar() {
             sunColor="white"
             className="mx-2"
           />
-          <Navbar.Toggle className="nav-toggler" />
+          <span onClick={() => setNavToggler(!navToggler)}>
+            <Navbar.Toggle
+              barIcon={navToggler ? fontAwesome.FaTimes : fontAwesome.FaBars}
+              className="nav-toggler [color:black!important] dark:[color:white!important]"
+            />
+          </span>
         </div>
 
         <>
-          <Navbar.Collapse className="mr-auto text-center md:text-start navs ">
+          <Navbar.Collapse
+            hidden={!navToggler}
+            className="mr-auto text-center md:text-start navs block"
+          >
             <NavLink
-              onClick={() => window.scrollTo(0, 0)}
+              onClick={handleNavLink}
               to="/"
               className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[7px!important] hover:text-white"
             >
               Home
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo(0, 0)}
+              onClick={handleNavLink}
               to="/categories"
               className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
             >
               Categories
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo(0, 0)}
+              onClick={handleNavLink}
               to="/products"
               className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
             >
               Products
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo(0, 0)}
+              onClick={handleNavLink}
               to="/brands"
               className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
             >
@@ -174,12 +243,15 @@ export default function NavBar() {
             </NavLink>
           </Navbar.Collapse>
 
-          <Navbar.Collapse className="ml-auto mr-1 text-center md:text-start navs ">
-            {userLogin != null && (
+          {userLogin != null && (
+            <Navbar.Collapse
+              hidden={!navToggler}
+              className="ml-auto mr-1 text-center md:text-start navs block"
+            >
               <div className="icons flex justify-center self-center gap-4 md:gap-2 ">
                 <Tooltip content="Orders" placement="bottom">
                   <NavLink
-                    onClick={() => window.scrollTo(0, 0)}
+                    onClick={handleNavLink}
                     to="/allorders"
                     className=" hover:text-white block nav-link relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
                   >
@@ -193,7 +265,7 @@ export default function NavBar() {
                 </Tooltip>
                 <Tooltip content="Wishlist" placement="bottom">
                   <NavLink
-                    onClick={() => window.scrollTo(0, 0)}
+                    onClick={handleNavLink}
                     to="/wishlist"
                     className=" hover:text-white block nav-link relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
                   >
@@ -207,7 +279,7 @@ export default function NavBar() {
                 </Tooltip>
                 <Tooltip content="Cart" placement="bottom">
                   <NavLink
-                    onClick={() => window.scrollTo(0, 0)}
+                    onClick={handleNavLink}
                     to="/cart"
                     className="block hover:text-white nav-link relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
                   >
@@ -220,8 +292,8 @@ export default function NavBar() {
                   </NavLink>
                 </Tooltip>
               </div>
-            )}
-          </Navbar.Collapse>
+            </Navbar.Collapse>
+          )}
         </>
       </Navbar>
     </>
