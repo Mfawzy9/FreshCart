@@ -70,7 +70,6 @@ export default function Home() {
                   x: 0,
                   transition: { duration: 0.9 },
                 }}
-                viewport={{ once: true }}
               >
                 <Link
                   onClick={() => scrollTo(0, 0)}
@@ -153,6 +152,7 @@ export default function Home() {
                 opacity: 1,
                 scale: 1,
                 transition: { duration: 0.9 },
+
               }}
               viewport={{ once: true }}
               className="absolute container xl:pl-32 inset-0 sm:ml-32 justify-start sm:justify-center items-center flex flex-col gap-2 sm:gap-5 w-fit text-white"
