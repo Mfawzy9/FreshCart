@@ -1,4 +1,3 @@
-import React from "react";
 import { FaTimes, FaUserPlus } from "react-icons/fa";
 import { VscSignIn } from "react-icons/vsc";
 import { Link } from "react-router-dom";

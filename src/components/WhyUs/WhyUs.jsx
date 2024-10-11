@@ -1,4 +1,3 @@
-import React from "react";
 import whyUs from "../../assets/imgs/whyus.jpg";
 import { motion } from "framer-motion";
 import Title from "../Title/Title";
@@ -20,7 +19,9 @@ export default function WhyUs() {
             opacity: 1,
             x: 0,
             transition: { duration: 0.9 },
+            
           }}
+          viewport={{ once: true }}
         >
           <p className=" text-xl">
             Unlock a world of possibilities with our exclusive features. Explore

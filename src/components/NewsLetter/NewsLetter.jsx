@@ -1,4 +1,3 @@
-import React from "react";
 import * as fontAwesome from "react-icons/fa"; //fontawesome icons
 
 export default function NewsLetter() {

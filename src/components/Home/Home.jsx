@@ -70,6 +70,7 @@ export default function Home() {
                   x: 0,
                   transition: { duration: 0.9 },
                 }}
+                viewport={{ once: true }}
               >
                 <Link
                   onClick={() => scrollTo(0, 0)}
@@ -105,7 +106,9 @@ export default function Home() {
                   opacity: 1,
                   x: 0,
                   transition: { duration: 0.9 },
+                  
                 }}
+                viewport={{ once: true }}
               >
                 <Link
                   onClick={() => scrollTo(0, 0)}
@@ -151,6 +154,7 @@ export default function Home() {
                 scale: 1,
                 transition: { duration: 0.9 },
               }}
+              viewport={{ once: true }}
               className="absolute container xl:pl-32 inset-0 sm:ml-32 justify-start sm:justify-center items-center flex flex-col gap-2 sm:gap-5 w-fit text-white"
             >
               <span className="text-white sm:pr-10 group-hover/sec:bg-red-800/80 transition-all duration-500 bg-red-800/40 p-2 rounded-se-full sub-font italic text-[4vw] lg:text-5xl">

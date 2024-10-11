@@ -178,7 +178,7 @@ export default function ForgotPassword() {
                 <Tooltip content="Back" className="w-20" placement="right">
                   <button
                     onClick={() => navigate(-1)}
-                    className="rounded w-10 h-10 flex justify-center items-center hover:bg-blue-950 bg-blue-800 text-white hover:text-white relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
+                    className="rounded w-10 h-10 flex justify-center items-center hover:bg-blue-950 bg-blue-800 text-white hover:text-white relative transition-all duration-[0.3s] p-1 m-1 md:!mx-0 text-2xl"
                   >
                     <fontAwesome.FaArrowAltCircleRight />
                   </button>

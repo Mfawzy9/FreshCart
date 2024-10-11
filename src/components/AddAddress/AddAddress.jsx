@@ -65,7 +65,7 @@ export default function AddAddress() {
                 >
                   <Link
                     onClick={() => navigate(-1)}
-                    className="block hover:text-white relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
+                    className="block hover:text-white relative transition-all duration-[0.3s] p-1 m-1 md:!mx-0 text-2xl"
                   >
                     <fontAwesome.FaArrowAltCircleLeft />
                   </Link>

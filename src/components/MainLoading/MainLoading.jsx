@@ -1,10 +1,9 @@
-import React from "react";
 import "./MainLoading.css";
 
 export default function MainLoading() {
   return (
     <>
-      <div className="loading fixed inset-0 flex justify-center items-center m-[0!important] bg-black z-50">
+      <div className="loading fixed inset-0 flex justify-center items-center !m-0 bg-black z-50">
         <div className=" flex justify-center my-7">
           <div className="preloader ">
             <svg

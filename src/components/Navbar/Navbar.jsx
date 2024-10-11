@@ -203,7 +203,7 @@ export default function NavBar() {
           <span onClick={() => setNavToggler(!navToggler)}>
             <Navbar.Toggle
               barIcon={navToggler ? fontAwesome.FaTimes : fontAwesome.FaBars}
-              className="nav-toggler [color:black!important] dark:[color:white!important]"
+              className="nav-toggler !text-black  dark:!text-white"
             />
           </span>
         </div>
@@ -216,28 +216,28 @@ export default function NavBar() {
             <NavLink
               onClick={handleNavLink}
               to="/"
-              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[7px!important] hover:text-white"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:!mx-1 lg:mx-[7px!important] hover:text-white"
             >
               Home
             </NavLink>
             <NavLink
               onClick={handleNavLink}
               to="/categories"
-              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:!mx-1 lg:mx-[5px!important] hover:text-white"
             >
               Categories
             </NavLink>
             <NavLink
               onClick={handleNavLink}
               to="/products"
-              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:!mx-1 lg:mx-[5px!important] hover:text-white"
             >
               Products
             </NavLink>
             <NavLink
               onClick={handleNavLink}
               to="/brands"
-              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:mx-[4px!important] lg:mx-[5px!important] hover:text-white"
+              className="nav-link transition-all duration-[0.3s] p-2 lg:px-3 m-1 md:!mx-1 lg:mx-[5px!important] hover:text-white"
             >
               Brands
             </NavLink>
@@ -253,7 +253,7 @@ export default function NavBar() {
                   <NavLink
                     onClick={handleNavLink}
                     to="/allorders"
-                    className=" hover:text-white block nav-link relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
+                    className=" hover:text-white block nav-link relative transition-all duration-[0.3s] p-1 m-1 md:!mx-0 text-2xl"
                   >
                     <fontAwesome.FaLuggageCart />
                     {ordersCount ? (
@@ -267,7 +267,7 @@ export default function NavBar() {
                   <NavLink
                     onClick={handleNavLink}
                     to="/wishlist"
-                    className=" hover:text-white block nav-link relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
+                    className=" hover:text-white block nav-link relative transition-all duration-[0.3s] p-1 m-1 md:!mx-0 text-2xl"
                   >
                     <fontAwesome.FaHeart />
                     {wishListCount ? (
@@ -281,7 +281,7 @@ export default function NavBar() {
                   <NavLink
                     onClick={handleNavLink}
                     to="/cart"
-                    className="block hover:text-white nav-link relative transition-all duration-[0.3s] p-1 m-1 md:mx-[0px!important] text-2xl"
+                    className="block hover:text-white nav-link relative transition-all duration-[0.3s] p-1 m-1 md:!mx-0 text-2xl"
                   >
                     <fontAwesome.FaShoppingCart />
                     {productsCount ? (

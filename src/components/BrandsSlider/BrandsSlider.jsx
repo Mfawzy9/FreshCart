@@ -1,4 +1,3 @@
-import React from "react";
 import useAllBrands from "../../Hooks/AllBrands/useAllBrands";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";

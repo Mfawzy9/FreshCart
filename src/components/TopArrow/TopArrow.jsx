@@ -1,4 +1,3 @@
-import React from "react";
 import "./TopArrow.css";
 
 export default function TopArrow() {
