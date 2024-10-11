@@ -107,7 +107,7 @@ export default function Home() {
                   transition: { duration: 0.9 },
                   
                 }}
-                viewport={{ once: true }}
+
               >
                 <Link
                   onClick={() => scrollTo(0, 0)}
