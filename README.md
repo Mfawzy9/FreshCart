@@ -4,6 +4,7 @@ A dynamic shopping platform offering seamless cart and wishlist management, real
 
 ## Technologies Used
 
+- **[React.js](https://reactjs.org/)**: Core framework for building dynamic UIs.
 - **[Tailwind CSS](https://tailwindcss.com/)**: Efficient, streamlined styling.
 - **[Axios](https://axios-http.com/)**: HTTP data fetching.
 - **[React Query](https://react-query.tanstack.com/)**: Server state management.
@@ -16,3 +17,15 @@ A dynamic shopping platform offering seamless cart and wishlist management, real
 - **[React Router DOM](https://reactrouter.com/)**: Declarative client routing.
 - **[React Toastify](https://fkhadra.github.io/react-toastify/)**: Custom toast notifications.
 - **[Context API](https://reactjs.org/docs/context.html)**: Global state sharing.
+
+## Features
+
+- Cart and wishlist functionality
+- Real-time product quantity updates
+- Dark mode/light mode
+- Secure authentication (JWT)
+- Order summaries
+- User account management
+- Product search
+- Shopping by category and brand
+- Online payment and cash on delivery
